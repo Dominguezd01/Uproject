@@ -22,7 +22,6 @@
     }
     const getBoardId = () =>{
         if (browser) {
-
             boardId = sessionStorage.getItem("boarId")
             if(!boardId){
                 location.href="/boards"

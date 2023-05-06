@@ -31,7 +31,7 @@
             }
             setTimeout(() =>{
                 location.href = "/boards"
-            }, 10000)
+            }, 1000)
            
         }else{
             Swal.fire(
