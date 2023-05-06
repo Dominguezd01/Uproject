@@ -14,6 +14,12 @@
     let columnContainer;
     let boardId;
     let userId;
+    onMount(() => {
+        if(browser){
+
+            localStorage.setItem("boardId", location.href.split("/")[location.href.split("/").length-1])
+        }
+    })
     const getUserId = async () => {
         if (browser) {
             userId = sessionStorage.getItem("userId");
@@ -29,7 +35,6 @@
             if (!boardId) {
                 location.href = "/auth";
             }
-            console.log(boardId);
             return parseInt(boardId);
         }
     };
@@ -49,10 +54,12 @@
 
         response = await response.json();
         console.log(response);
-
+        if(response.status == 404){
+            location.href = "/boards"
+        }
         boardId = response.board[0].id;
         states = response.board[1];
-
+    
         return response;
     };
 
@@ -74,6 +81,9 @@
             confirmButtonText: "Look up",
             showLoaderOnConfirm: true,
             preConfirm: async (name) => {
+                if(!name){
+                    name = " "
+                }
                 let options = {
                     method: "POST",
                     headers: {
