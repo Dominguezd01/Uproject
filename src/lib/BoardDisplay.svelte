@@ -27,7 +27,9 @@
             deleteBoard()
             
         }else{
-            localStorage.setItem("boardId", id)
+            if(browser){
+                localStorage.setItem("boardId", id)
+            }
             location.href= `/boards/view/${id}`
         }
     }

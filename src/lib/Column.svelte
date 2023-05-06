@@ -5,6 +5,7 @@
     import Task from "./Task.svelte"
     import Swal from "sweetalert2";
     import { API_ROUTE } from "./routes";
+    import { browser } from '$app/environment';
     export let columnInfo;
     export let states;
     console.log(columnInfo);
