@@ -32,6 +32,9 @@
             confirmButtonText: "Look up",
             showLoaderOnConfirm: true,
             preConfirm: async (name) => {
+                if(!name){
+                    name = " "
+                }
                 let options = {
                     method: "POST",
                     headers: {

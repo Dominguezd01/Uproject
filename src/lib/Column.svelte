@@ -32,6 +32,9 @@
                         columnId: divContainer.dataset.id,
                     }),
                 };
+                if(!content){
+                    content = " "
+                }
                 try {
                     let responseAddTask = await fetch(
                         `${API_ROUTE}/tasks/add`,
