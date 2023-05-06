@@ -15,10 +15,11 @@
 
     const getUserId = () =>{
         if (browser) {
-            idUser = sessionStorage.getItem("userId")
+            let idUser = sessionStorage.getItem("userId")
             if(!idUser){
                 location.href="/auth/login"
             }
+            return idUser
         }
     }
     const getBoardId = () =>{
