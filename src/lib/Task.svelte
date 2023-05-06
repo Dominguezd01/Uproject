@@ -14,6 +14,24 @@
     let inputTask
     let select
     let taskDiv
+    const getUserId = async () => {
+        if (browser) {
+            userId = sessionStorage.getItem("userId");
+            if (!userId) {
+                location.href = "/auth";
+            }
+            return userId;
+        }
+    }
+    const getBoardId = () => {
+        if (browser) {
+            boardId = localStorage.getItem("boardId");
+            if (!boardId) {
+                location.href = "/auth";
+            }
+            return parseInt(boardId);
+        }
+    }
     const handleClick = () =>{
         localStorage.setItem("taskContentIfFailed", inputTask.value)
         inputTask.removeAttribute("readonly")  
@@ -35,7 +53,9 @@
                 // @ts-ignore
                 content: content,
                 // @ts-ignore
-                state: state
+                state: state, 
+                userId: getUserId(),
+                boardId: getBoardId()
             })   
         }
         try{

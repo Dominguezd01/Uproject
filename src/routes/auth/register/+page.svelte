@@ -25,12 +25,13 @@
                 `${response.message}`,
                 "success"
             )
+            console.log(response)
             if(browser){
                 sessionStorage.setItem("userId", response.sendData.id )
             }
             setTimeout(() =>{
                 location.href = "/boards"
-            }, 1000)
+            }, 10000)
            
         }else{
             Swal.fire(

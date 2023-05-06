@@ -29,7 +29,7 @@
             return userId;
         }
     };
-    const getBoardId = async () => {
+    const getBoardId = () => {
         if (browser) {
             boardId = localStorage.getItem("boardId");
             if (!boardId) {
@@ -92,6 +92,7 @@
                     body: JSON.stringify({
                         boardId: getBoardId(),
                         columnTitle: name,
+                        userId: getUserId()
                     }),
                 };
                 try {

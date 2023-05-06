@@ -11,6 +11,25 @@
     let divContainer;
     let columnDiv;
     let columnTitle
+
+    const getUserId = () =>{
+        if (browser) {
+            idUser = sessionStorage.getItem("userId")
+            if(!idUser){
+                location.href="/auth/login"
+            }
+        }
+    }
+    const getBoardId = () =>{
+        if (browser) {
+
+            boardId = sessionStorage.getItem("boarId")
+            if(!boardId){
+                location.href="/boards"
+            }
+            return boardId
+        }
+    }
     const getNewTask = async () => {
         Swal.fire({
             title: "Your new task",
@@ -22,6 +41,9 @@
             confirmButtonText: "Add task!",
             showLoaderOnConfirm: true,
             preConfirm: async (content) => {
+                if(!content){
+                    content = " "
+                }
                 let options = {
                     method: "POST",
                     headers: {
@@ -30,11 +52,11 @@
                     body: JSON.stringify({
                         content: content,
                         columnId: divContainer.dataset.id,
+                        userId: getUserId(),
+                        boardId: getBoardId()
                     }),
                 };
-                if(!content){
-                    content = " "
-                }
+
                 try {
                     let responseAddTask = await fetch(
                         `${API_ROUTE}/tasks/add`,
@@ -92,6 +114,8 @@
                     },
                     body: JSON.stringify({
                         columnId: divContainer.dataset.id,
+                        userId: getUserId(),
+                        boardId: getBoardId()
                     }),
                 };
                 try {
@@ -131,7 +155,9 @@
             },
             body: JSON.stringify({
                 columnId: columnInfo.id,
-                columnTitle: columnTitle.value
+                columnTitle: columnTitle.value,
+                userId: getUserId(),
+                boardId: getBoardId()
             })
         }
         let response = await fetch(`${API_ROUTE}/columns/editColumnTitle`, options)
