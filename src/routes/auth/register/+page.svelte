@@ -1,7 +1,7 @@
 <script>
     import Swal from "sweetalert2";
     import { API_ROUTE } from "../../../lib/routes.js";
-
+    import { browser } from '$app/environment';
     let emailForm
     let passwordForm
     let userNameForm
@@ -25,6 +25,9 @@
                 `${response.message}`,
                 "success"
             )
+            if(browser){
+                sessionStorage.setItem("userId", response.sendData.id )
+            }
             setTimeout(() =>{
                 location.href = "/boards"
             }, 1000)
