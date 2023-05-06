@@ -16,9 +16,9 @@
 
     const getUserId = async () => {
         if (browser) {
-            userId = sessionStorage.getItem("userId");
+            let userId = sessionStorage.getItem("userId");
             if (!userId) {
-                location.href = "/auth";
+                location.href = "/auth/login";
             }
             return userId;
         }
@@ -31,7 +31,6 @@
             if(!idUser){
                 location.href ="/auth/login"
             }
-            return idUser
         }
     }
     );
