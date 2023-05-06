@@ -63,7 +63,7 @@
                             showConfirmButton: false,
                         });
                         if(browser){
-                            sessionStorage.setItem("boardId",responseCreateBoard.board.id )
+                            localStorage.setItem("boardId",responseCreateBoard.board.id )
                         }
                         setTimeout(() => {
                             location.href = `/boards/view/${responseCreateBoard.board.id}`;
