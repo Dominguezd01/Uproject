@@ -14,7 +14,7 @@
     let idUser
     import { browser } from '$app/environment';
 
-    const getUserId = async () => {
+    const getUserId = () => {
         if (browser) {
             let userId = sessionStorage.getItem("userId");
             if (!userId) {
