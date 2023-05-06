@@ -54,9 +54,10 @@
             <label for="password">Password</label>
             <input  class="inputForm" type="password" bind:value={passwordForm}>
         </span>
-        <input type="submit">
+        <input class="submit" type="submit">
     
     </form>
+    <a class="loginRedirect" href="/auth/login">Are you a memeber?</a>
 </div>
 
 
@@ -81,11 +82,24 @@
         transition: 0.2S;
     }
     .inputForm:focus{
-        -webkit-box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.473);
-        -moz-box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.473);
-        box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.473);
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.767);
+        -moz-box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.808);
+        box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.774);
     }
-
+    .submit{
+        width: 150px;
+        background-color: #ff682c ;
+        text-align: center;
+        padding: 1em;
+        border: none;
+        border-radius: 15px;
+        transition: 0.3s;
+    }
+    
+    .loginRedirect{
+        margin-top: 1em;
+        color: rgb(255, 120, 67);
+    }
 
     #formLogin{
         display: grid;

@@ -37,21 +37,25 @@
 </script>
 
 <div id="formContainer">
-    <form id="formLogin" on:submit|preventDefault={handleSubmit}>
-        <span class="inputContainer" id="userNameContainer">
-            <label for="email">Email</label>
-            <input class="inputForm" type="text" bind:value={emailForm} />
-        </span>
-        <span class="inputContainer" id="passwordContainer">
-            <label for="password">Password</label>
-            <input
-                class="inputForm"
-                type="password"
-                bind:value={passwordForm}
-            />
-        </span>
-        <input type="submit" />
+    <form class="formLogin" on:submit|preventDefault={handleSubmit}>
+        <div class="inputContainer">
+            <span class="inputContainerSpan" id="userNameContainer">
+                <label for="email">Email</label>
+                <input class="inputForm" type="text" bind:value={emailForm} />
+            </span>
+            <span class="inputContainerSpan" id="passwordContainer">
+                <label for="password">Password</label>
+                <input
+                    class="inputForm"
+                    type="password"
+                    bind:value={passwordForm}
+                />
+            </span>
+        </div>
+        <input class="submit" type="submit" />
     </form>
+
+    <a class="loginRedirect" href="/auth/register">Are you a new? Sing Up!</a>
 </div>
 
 <style>
@@ -63,7 +67,12 @@
     .inputContainer {
         display: grid;
         place-items: center;
-        gap: 0.2em;
+
+        gap: 1em;
+    }
+    .inputContainerSpan{
+        display: grid;
+        place-items: center;
     }
     .inputForm{
         width: 300px;
@@ -74,14 +83,27 @@
         text-align: center;
         transition: 0.2S;
     }
-    .inputForm:focus{
-        -webkit-box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.473);
-        -moz-box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.473);
-        box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.473);
+    .submit{
+        width: 150px;
+        background-color: #ff682c ;
+        text-align: center;
+        padding: 1em;
+        border: none;
+        border-radius: 15px;
+        transition: 0.3s;
     }
-    #formLogin {
+    .inputForm:focus, .submit:hover{
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.986);
+        -moz-box-shadow: 10px 10px 5px 0px rgb(235, 138, 100);
+        box-shadow: 10px 10px 5px 0px rgb(235, 138, 100);
+    }
+    .formLogin {
         display: grid;
         place-items: center;
         gap: 3em;
+    }
+    .loginRedirect{
+        margin-top: 1em;
+        color: rgb(255, 120, 67);
     }
 </style>
