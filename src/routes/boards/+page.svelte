@@ -14,12 +14,27 @@
     let idUser
     import { browser } from '$app/environment';
 
-   
+    const getUserId = async () => {
+        if (browser) {
+            userId = sessionStorage.getItem("userId");
+            if (!userId) {
+                location.href = "/auth";
+            }
+            return userId;
+        }
+    };
+
+
     onMount(async () => {
         if (browser) {
-        idUser = sessionStorage.getItem("userId")
+            let idUser = sessionStorage.getItem("userId")
+            if(!idUser){
+                location.href ="/auth/login"
+            }
+            return idUser
+        }
     }
-    });
+    );
 
     async function createBoard() {
         Swal.fire({
@@ -79,7 +94,7 @@
 
     const getUserBoards = async () => {
         let res;
-        searchParams = sessionStorage.getItem("userId");
+        let searchParams = getUserId();
 
         res = await fetch(
             `${API_ROUTE}/boards/${String(searchParams)}`

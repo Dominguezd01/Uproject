@@ -16,7 +16,6 @@
     let userId;
     onMount(() => {
         if(browser){
-
             localStorage.setItem("boardId", location.href.split("/")[location.href.split("/").length-1])
         }
     })
@@ -46,8 +45,8 @@
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                boardId: await getBoardId(),
-                userId: await getUserId(),
+                boardId:  getBoardId(),
+                userId:  getUserId(),
             }),
         };
         let response = await fetch(`${API_ROUTE}/boards/view`, options);
