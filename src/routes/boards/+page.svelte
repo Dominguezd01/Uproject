@@ -48,7 +48,7 @@
                         options
                     );
                     if (!responseCreateBoard.ok) {
-                        throw new Error(response.statusText);
+                        throw new Error(responseCreateBoard.statusText);
                     }
                     responseCreateBoard = await responseCreateBoard.json();
                     console.log(responseCreateBoard);

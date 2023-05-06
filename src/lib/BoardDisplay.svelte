@@ -9,10 +9,14 @@
     export let board
     let idUser
     onMount(() =>{
+ 
+    })
+
+    const getUserId = () =>{
         if (browser) {
             idUser = sessionStorage.getItem("userId")
         }
-    })
+    }
     //console.log(board)
 
     //let userId = sessionStorage.getItem("userId")
@@ -47,7 +51,7 @@
                     },
                     body: JSON.stringify({
                         boardId: divClickable.dataset.id,
-                        userId: userId
+                        userId: getUserId()
                     }),
                 };
                 try {
