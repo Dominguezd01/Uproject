@@ -17,7 +17,7 @@
     const getUserId = () => {
         if (browser) {
             let userId = sessionStorage.getItem("userId");
-            if (!userId) {
+            if (!userId || Object.keys(userId).length == 0) {
                 location.href = "/auth/login";
             }
             return userId;
@@ -110,17 +110,19 @@
 <div id="main">
 
     <h1 id="boardTitle">BOARDS</h1>
-    <button class="addBoardButton" on:click={createBoard}>Add a board!</button>
-    <div id="boardsContainer">
+  
+   
         {#await getBoards}
             <Loader></Loader>
         {:then boards}
+            <button class="addBoardButton" on:click={createBoard}>Add a board!</button>
+            <div id="boardsContainer">
             {#each boards as board }
                 <BoardDisplay board={board} ></BoardDisplay>
             {/each}
-           
+            </div>
         {/await}
-    </div>
+    
 </div>
 
 

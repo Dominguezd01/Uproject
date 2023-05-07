@@ -16,11 +16,12 @@
     const getUserId = () =>{
         if (browser) {
             let idUser = sessionStorage.getItem("userId")
-            if(!idUser){
+            if(!idUser || Object.keys(idUser).length === 0){
                 location.href="/auth/login"
             }
             return idUser
         }
+
     }
     const getBoardId = () =>{
         if (browser) {
@@ -67,9 +68,6 @@
                         `${API_ROUTE}/tasks/add`,
                         options
                     );
-                    if (!responseAddTask.ok) {
-                        throw new Error(responseAddTask.statusText);
-                    }
                     responseAddTask = await responseAddTask.json();
                     console.log(responseAddTask);
                     if (responseAddTask.status == 200) {
@@ -85,14 +83,32 @@
                                         content: responseAddTask.task.content,
                                         // @ts-ignore
                                         state_id: responseAddTask.task.state_id,
+       
                                     },
                                 ],
 
                                 states: responseAddTask.states,
                             },
                         });
+                    }else if(responseAddTask.status == 401){
+                        Swal.fire({
+                            text: `${responseAddTask.message}`,
+                            icon: "error",
+                            showConfirmButton: false,
+                            timer: 1300
+                        });
+
+                        setTimeout(() =>{
+                            location.href = "/boards"
+                        }, 1300)
                     }else{
-                        Swal.showValidationMessage(`Request failed: ${error}`);
+                        Swal.fire({
+                            text: `${responseAddTask.message}`,
+                            icon: "error",
+                            showConfirmButton: false,
+                            timer: 1300
+                        });
+
                     }
 
                 },
@@ -123,36 +139,56 @@
                         boardId: getBoardId()
                     }),
                 };
-                try {
+            
                     let responseDeleteColumn = await fetch(
                         `${API_ROUTE}/columns/delete`,
                         options
                     );
-                    if (!responseDeleteColumn.ok) {
-                        throw new Error(responseDeleteColumn.statusText);
-                    }
                     responseDeleteColumn = await responseDeleteColumn.json();
                     console.log(responseDeleteColumn);
                     if (responseDeleteColumn.status == 200) {
                         Swal.fire({
                             title: "Column deleted",
-                            text: "Its a bit sad ngl ;C",
+                            text: `${responseDeleteColumn.message}`,
                             icon: "success",
                             showConfirmButton: true,
                         });
 
                         columnDiv.remove();
                     }
-                } catch (error) {
-                    Swal.showValidationMessage(`Request failed: ${error}`);
-                }
+                    else if(responseDeleteColumn.status == 401){
+                        Swal.fire({
+                            title: "Error",
+                            text: `${responseDeleteColumn.message}`,
+                            icon: "error",
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+
+                        setTimeout(() =>{
+                            location.href = "/boards"
+                        }, 1500)
+                    }else{
+                        Swal.fire({
+                            title: "Error",
+                            text: `${responseDeleteColumn.message}`,
+                            icon: "error",
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        setTimeout(() =>{
+                            location.reload()
+                        }, 1500)
+                    }
             },
             allowOutsideClick: () => !Swal.isLoading(),
         });
     };
 
     const editColumnTitle = async () => {
-        console.log(columnTitle.value)
+        if(columnTitle.value == ""){
+            columnTitle.value = " "
+        }
         const options = {
             method: "PUT",
             headers: {
@@ -174,12 +210,29 @@
             setTimeout(() =>{
                 columnTitle.style.border = previousStyle
             },1000)
-        }else{
-            let previousStyle = columnTitle.style.border
-            columnTitle.style.border = "1px solid red"
+        }else if(response.state == 401){
+            Swal.fire({
+                title: "Error",
+                text: "You are not part of this board",
+                showConfirmButton: false,
+                icon: "error",
+                timer: 1500
+            })
             setTimeout(() =>{
-                columnTitle.style.border = previousStyle
-            },1000)
+                location.href = "/boards"
+            }, 1500)
+        }
+        else{
+            Swal.fire({
+                title: "Error",
+                text: `${response.message}`,
+                showConfirmButton: false,
+                icon: "error",
+                timer: 1500
+            })
+            setTimeout(() =>{
+                location.reload()
+            }, 1500)
         }
     }
 </script>

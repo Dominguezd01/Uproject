@@ -5,6 +5,7 @@
     import EditButton from "./EditButton.svelte";
     import { API_ROUTE } from "./routes";
     import { browser } from '$app/environment'; 
+    import Swal from "sweetalert2";
     export let taskContent
     export let states
 
@@ -14,11 +15,11 @@
     let inputTask
     let select
     let taskDiv
-    const getUserId = async () => {
+    const getUserId = () => {
         if (browser) {
             let userId = sessionStorage.getItem("userId");
-            if (!userId) {
-                location.href = "/auth";
+            if (!userId || Object.keys(userId).length == 0 ) {
+                location.href = "/auth/login";
             }
             return userId;
         }
@@ -27,7 +28,7 @@
         if (browser) {
             let boardId = localStorage.getItem("boardId");
             if (!boardId) {
-                location.href = "/auth";
+                location.href = "/boards";
             }
             return parseInt(boardId);
         }
@@ -40,8 +41,8 @@
         localStorage.setItem("selectStateIfFailed", select.value)
     }
     const handleBlur = async (e) =>{
-        if(e.target.tagName == "INPUT"){
-            document.getElementById(`taskContent${taskContent.id}`)
+        if(inputTask.value == ""){
+            inputTask.value=" "
         }
         const options = {
             method: "PUT",
@@ -51,7 +52,7 @@
             body: JSON.stringify({
                 taskId: taskContent[0].id,
                 // @ts-ignore
-                content: content,
+                content: inputTask.value,
                 // @ts-ignore
                 state: state, 
                 userId: getUserId(),
@@ -62,6 +63,27 @@
             let response = await fetch(`${API_ROUTE}/tasks/edit`, options)
             response = await response.json()
             console.log(response)
+            if(response.status == 401){
+                Swal.fire({
+                    title: "Error",
+                    text:`${response.message}`,
+                    icon: "error",
+                    timer: 1500,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+                setTimeout(() => {
+                    location.href = "/boards"
+                }, 1500)
+            }
+            if(response.status != 200){
+                Swal.fire(
+                    "Error",
+                    `${response.message}`,
+                    "error"
+                )
+            }
         }catch(err){
        
         }

@@ -3,7 +3,9 @@
 
     import { onMount } from "svelte";
     import Column from "../../../../lib/Column.svelte";
-
+    import deleteUserIcon from "$lib/assets/delete-user.svg";
+    import addUserIcon from "$lib/assets/addUser.svg";
+    import createColumnIcon from "$lib/assets/createColumn.svg";
     import Loader from "../../../../lib/Loader.svelte";
     //import UpLogo from "../../../../UpLogo.svelte"
     import Swal from "sweetalert2";
@@ -15,15 +17,26 @@
     let boardId;
     let userId;
     onMount(() => {
-        if(browser){
-            localStorage.setItem("boardId", location.href.split("/")[location.href.split("/").length-1])
-        }
-    })
-    const getUserId = async () => {
         if (browser) {
-            userId = sessionStorage.getItem("userId");
-            if (!userId) {
-                location.href = "/auth";
+            localStorage.setItem(
+                "boardId",
+                location.href.split("/")[location.href.split("/").length - 1]
+            );
+        }
+    });
+    const setBoardId = () => {
+        if (browser) {
+            localStorage.setItem(
+                "boardId",
+                location.href.split("/")[location.href.split("/").length - 1]
+            );
+        }
+    };
+    const getUserId = () => {
+        if (browser) {
+            let userId = sessionStorage.getItem("userId");
+            if (!userId || Object.keys(userId).length == 0) {
+                location.href = "/auth/login";
             }
             return userId;
         }
@@ -32,33 +45,34 @@
         if (browser) {
             boardId = localStorage.getItem("boardId");
             if (!boardId) {
-                location.href = "/auth";
+                location.href = "/boards";
             }
             return parseInt(boardId);
         }
     };
 
     const getBoard = async () => {
+        setBoardId();
         let options = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                boardId:  getBoardId(),
-                userId:  getUserId(),
+                boardId: getBoardId(),
+                userId: getUserId(),
             }),
         };
         let response = await fetch(`${API_ROUTE}/boards/view`, options);
 
         response = await response.json();
         console.log(response);
-        if(response.status == 404){
-            location.href = "/boards"
+        if (response.status == 404) {
+            location.href = "/boards";
         }
         boardId = response.board[0].id;
         states = response.board[1];
-    
+
         return response;
     };
 
@@ -77,11 +91,11 @@
                 autocapitalize: "off",
             },
             showCancelButton: true,
-            confirmButtonText: "Look up",
+            confirmButtonText: "Create",
             showLoaderOnConfirm: true,
             preConfirm: async (name) => {
-                if(!name){
-                    name = " "
+                if (!name) {
+                    name = " ";
                 }
                 let options = {
                     method: "POST",
@@ -91,21 +105,18 @@
                     body: JSON.stringify({
                         boardId: getBoardId(),
                         columnTitle: name,
-                        userId: getUserId()
+                        userId: getUserId(),
                     }),
                 };
-                try {
-                    let responseCreateColumn = await fetch(
-                        `${API_ROUTE}/columns/add`,
-                        options
-                    );
 
-                    if (!responseCreateColumn.ok) {
-                        throw new Error(responseCreateColumn.statusText);
-                    }
-                    responseCreateColumn = await responseCreateColumn.json();
-                    console.log("RESPUESTA");
-                    console.log(responseCreateColumn);
+                let responseCreateColumn = await fetch(
+                    `${API_ROUTE}/columns/add`,
+                    options
+                );
+
+                responseCreateColumn = await responseCreateColumn.json();
+                console.log(responseCreateColumn);
+                if (responseCreateColumn.status == 200) {
                     new Column({
                         target: columnContainer,
                         props: {
@@ -121,8 +132,28 @@
                             states: JSON.parse(localStorage.getItem("states")),
                         },
                     });
-                } catch (error) {
-                    Swal.showValidationMessage(`Request failed: ${error}`);
+                } else if (response.status == 401) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "You are not part of this board",
+                        icon: "error",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    setTimeout(() => {
+                        location.href = "/boards";
+                    }, 1500);
+                }else{
+                    Swal.fire({
+                        title: "Error",
+                        text: `${responseCreateColumn.message}`,
+                        icon: "error",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    setTimeout(() =>{
+                        location.reload()
+                    }, 1500)
                 }
             },
             allowOutsideClick: () => !Swal.isLoading(),
@@ -138,7 +169,7 @@
                 autocapitalize: "off",
             },
             showCancelButton: true,
-            confirmButtonText: "Yes, delete it",
+            confirmButtonText: "Send",
             showLoaderOnConfirm: true,
             preConfirm: async (email) => {
                 let options = {
@@ -148,7 +179,7 @@
                     },
                     body: JSON.stringify({
                         board_id: boardId,
-                        user_id: userId,
+                        user_id: getUserId(),
                         add_user_email: email,
                     }),
                 };
@@ -262,10 +293,10 @@
                 let select = document.querySelector(".swal2-select");
                 optgroups.forEach((opt) => {
                     let options = opt.querySelectorAll("option");
-                    options.forEach(option =>{
-                        select.appendChild(option)
-                    })
-                    opt.remove()
+                    options.forEach((option) => {
+                        select.appendChild(option);
+                    });
+                    opt.remove();
                 });
             }
         }
@@ -279,14 +310,21 @@
         <h1 class="boardName">{boardInfo["board"][0].name}</h1>
         <div id="flexRight">
             <button class="createColumnButton" on:click={createColumn}>
-                Create a new column!
+                <span>Create a new column!</span>
+                <img
+                    src={createColumnIcon}
+                    class="icon"
+                    alt="Create column icon"
+                />
             </button>
-            <button class="addUserButton" on:click={addUser}
-                >Add a user! <span class="add">+</span></button
-            >
-            <button class="deleteUserButton" on:click={deleteUser}
-                >Delete a user</button
-            >
+            <button class="addUserButton" on:click={addUser}>
+                <span>Add a user!</span>
+                <img src={addUserIcon} class="icon" alt="Add user Icon" />
+            </button>
+            <button class="deleteUserButton" on:click={deleteUser}>
+                <span>Delete a user</span>
+                <img src={deleteUserIcon} class="icon" alt="Delete user icon" />
+            </button>
         </div>
         <div class="columnContainer" bind:this={columnContainer}>
             {#each boardInfo["board"][1].columns as column}
@@ -316,6 +354,21 @@
         place-items: center;
         gap: 1em;
     }
+    .deleteUserButton {
+        border: none;
+        border-radius: 15px;
+        padding: 1em;
+        background-color: #ff2c2c;
+        color: white;
+        transition: 0.3s;
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.3em;
+        cursor: pointer;
+    }
+
     .createColumnButton,
     .addUserButton {
         border: none;
@@ -326,21 +379,27 @@
         border: 1px rgba(250, 128, 114, 0.336) solid;
         transition: 0.3s;
         font-size: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.3em;
+        cursor: pointer;
     }
+
     .addUserButton {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 0.2em;
     }
-    .add {
-        font-weight: bold;
-        font-size: 20px;
-    }
+
     .createColumnButton:hover,
     .addUserButton:hover {
         -webkit-box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.473);
         -moz-box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.473);
         box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.473);
+    }
+    .icon {
+        width: 20px;
     }
 </style>

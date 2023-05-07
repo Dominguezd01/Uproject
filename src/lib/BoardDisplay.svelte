@@ -1,7 +1,7 @@
 <script>
     import Swal from "sweetalert2";
  
-    import *  as API_ROUTE from "./routes.js" ;
+    import  {API_ROUTE} from "./routes.js" ;
     import { onMount } from "svelte";
     import { browser } from '$app/environment';
     import deleteIcon from '$lib/assets/delete.svg';
@@ -61,14 +61,12 @@
                         userId: getUserId()
                     }),
                 };
-                try {
+       
                     let responseDeleteColumn = await fetch(
                         `${API_ROUTE}/boards/delete`,
                         options
                     );
-                    if (!responseDeleteColumn.ok) {
-                        throw new Error(responseDeleteColumn.statusText);
-                    }
+
                     responseDeleteColumn = await responseDeleteColumn.json();
                     console.log(responseDeleteColumn);
                     if (responseDeleteColumn.status == 200) {
@@ -81,6 +79,14 @@
                         });
 
                         divClickable.remove();
+                    }else if(responseDeleteColumn.status == 401){
+                        Swal.fire({
+                            title: "Cannot delete the board",
+                            // @ts-ignore
+                            text: responseDeleteColumn.message, 
+                            icon: "error",
+                            showConfirmButton: true,
+                        });
                     }else{
                         Swal.fire({
                             title: "Cannot delete the board",
@@ -90,15 +96,7 @@
                             showConfirmButton: true,
                         });
                     }
-                } catch (error) {
-                    Swal.fire({
-                            title: "Cannot delete the board",
-                            // @ts-ignore
-                            text: error, 
-                            icon: "error",
-                            showConfirmButton: true,
-                        });
-                }
+               
             },
             allowOutsideClick: () => !Swal.isLoading(),
         });
@@ -121,6 +119,7 @@
                 {:else}
                     <span class="dynamicText">You</span>
                 {/if}
+
             </div>
             <!-- svelte-ignore a11y-missing-attribute -->
             <a class="deleteBoard" on:click|preventDefault={deleteBoard}>
@@ -148,26 +147,26 @@
 
     .deleteBoard{
         border: none;
-
+        width: 20px;
+        cursor: pointer;
     }
     .deleteIcon{
         width: 20px;
-        cursor: pointer;
     }
     #boardName, #boardOwner{
         display: flex;
         gap: 1em;
         align-items: center;
+        justify-content: center;
         border: 0px 0px 0px 1px solid orange;
     }
     #boardOwner{
         cursor: pointer;
+        color: white;
+        grid-template-columns: repeat(2, 1fr);
     }
     .permanentText{
         font-weight: bold;
     }
-    .dynamicText{
-        margin-left: 1em;
-       
-    }
+
 </style>

@@ -3,7 +3,26 @@
     export let taskDiv;
     import {API_ROUTE} from "./routes.js";
     import Swal from "sweetalert2";
-
+    import { browser } from '$app/environment';
+    const getUserId = () =>{
+        if (browser) {
+            let idUser = sessionStorage.getItem("userId")
+            if(!idUser){
+                location.href="/auth/login"
+            }
+            return idUser
+        }
+    }
+    const getBoardId = () =>{
+        if (browser) {
+            let boardId = localStorage.getItem("boardId")
+            if(!boardId){
+                location.href="/boards"
+            }
+        
+            return boardId
+        }
+    }
     const handleClick = async (e) => {
         Swal.fire({
             title: "You wanna delete this task?",
@@ -21,9 +40,11 @@
                     },
                     body: JSON.stringify({
                         taskId: taskId,
+                        userId: getUserId(),
+                        boardId: getBoardId()
                     }),
                 };
-                try {
+
                     let responseDeleteTask = await fetch(
                         `${API_ROUTE}/tasks/delete`,
                         options
@@ -39,18 +60,32 @@
                             "success"
                         )
                         taskDiv.remove();
-                    } else {
+
+                    }else if(responseDeleteTask.status == 401){
+                        Swal.fire({
+                            title: "Error",
+                            text: `${responseDeleteTask.message}`,
+                            icon: "error",
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+
+                        setTimeout(() =>{
+                            location.href = "/boards"
+                        }, 1500)
+                    }else {
                         Swal.fire(
                             "ERROR!!",
                             // @ts-ignore
                             responseDeleteTask.message,
                             "error"
                         )
+                        setTimeout(() =>{
+                            location.reload()
+                        }, 1500)
                     }
-                } catch (error) {
-                    Swal.showValidationMessage(`Looks like our server is out, sorry :C`);
-                }
-            },
+                },
+        
             allowOutsideClick: () => !Swal.isLoading(),
         });
     };
