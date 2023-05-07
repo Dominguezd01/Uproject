@@ -4,7 +4,7 @@
     import DeleteButton from "./DeleteButton.svelte";
     import EditButton from "./EditButton.svelte";
     import { API_ROUTE } from "./routes";
-
+    import { browser } from '$app/environment'; 
     export let taskContent
     export let states
 
@@ -16,7 +16,7 @@
     let taskDiv
     const getUserId = async () => {
         if (browser) {
-            userId = sessionStorage.getItem("userId");
+            let userId = sessionStorage.getItem("userId");
             if (!userId) {
                 location.href = "/auth";
             }
@@ -25,7 +25,7 @@
     }
     const getBoardId = () => {
         if (browser) {
-            boardId = localStorage.getItem("boardId");
+            let boardId = localStorage.getItem("boardId");
             if (!boardId) {
                 location.href = "/auth";
             }
