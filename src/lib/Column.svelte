@@ -24,10 +24,12 @@
     }
     const getBoardId = () =>{
         if (browser) {
-            let boardId = sessionStorage.getItem("boarId")
+            let boardId = localStorage.getItem("boardId")
+                
             if(!boardId){
                 location.href="/boards"
             }
+        
             return boardId
         }
     }
@@ -41,6 +43,7 @@
             showCancelButton: true,
             confirmButtonText: "Add task!",
             showLoaderOnConfirm: true,
+            
             preConfirm: async (content) => {
                 if(!content){
                     content = " "
@@ -55,10 +58,11 @@
                         columnId: divContainer.dataset.id,
                         userId: getUserId(),
                         boardId: getBoardId()
-                    }),
+                    })
                 };
+                console.log(options)
 
-                try {
+                
                     let responseAddTask = await fetch(
                         `${API_ROUTE}/tasks/add`,
                         options
@@ -87,11 +91,11 @@
                                 states: responseAddTask.states,
                             },
                         });
+                    }else{
+                        Swal.showValidationMessage(`Request failed: ${error}`);
                     }
-                } catch (error) {
-                    Swal.showValidationMessage(`Request failed: ${error}`);
-                }
-            },
+
+                },
             allowOutsideClick: () => !Swal.isLoading(),
         });
     };

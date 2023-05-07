@@ -28,6 +28,7 @@
     onMount(async () => {
         if (browser) {
             let idUser = sessionStorage.getItem("userId")
+            
             if(!idUser){
                 location.href ="/auth/login"
             }
