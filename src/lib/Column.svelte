@@ -257,7 +257,9 @@
         class="taskContainer"
     >
         {#each columnInfo.tasks as task}
-            <Task taskContent={task} {states} />
+            {#if task.length !=  0}
+             <Task taskContent={task} states={states} />
+            {/if}
         {/each}
     </div>
 </main>

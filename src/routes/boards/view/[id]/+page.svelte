@@ -67,6 +67,7 @@
 
         response = await response.json();
         console.log(response);
+        
         if (response.status == 404) {
             location.href = "/boards";
         }

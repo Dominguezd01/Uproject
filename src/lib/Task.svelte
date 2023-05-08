@@ -9,9 +9,10 @@
     export let taskContent
     export let states
 
-    console.log(states)
+    console.log(taskContent)
+
     let content = taskContent[0].content
-    let state = taskContent[0].state
+    let state = taskContent.states
     let inputTask
     let select
     let taskDiv
@@ -112,24 +113,25 @@
             on:blur={handleBlur} 
             bind:this={select} 
             bind:value={state} 
-            name="state" id={"selectState"+taskContent[0].id}>
+            name="state" id={"selectState"+taskContent.id}>
             {#each states as state}
-             
-                {#if state.id === taskContent[0].state_id}
-                    <option selected value={state.id}>
-                        {state.state}
-                    </option>
-                {:else}
-                    <option class={state.state.split(" ").join("")} value={state.id}>
-                        {state.state}
-                    </option>
+                {#if taskContent[0]}
+                    {#if state.id === taskContent.state_id}
+                        <option selected value={state.id}>
+                            {state.state}
+                        </option>
+                    {:else}
+                        <option class={state.state.split(" ").join("")} value={state.id}>
+                            {state.state}
+                        </option>
+                    {/if}
                 {/if}
             {/each}
         </select>
     </div>
 
     <div id="buttonContainer">
-        <DeleteButton taskDiv={taskDiv} taskId={taskContent[0].id}></DeleteButton>
+        <DeleteButton taskDiv={taskDiv} taskId={taskContent.id}></DeleteButton>
     </div>
 </div>
 
