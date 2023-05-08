@@ -132,7 +132,7 @@
     </div>
 
     <div id="buttonContainer">
-        <DeleteButton taskDiv={taskDiv} taskId={taskContent.id}></DeleteButton>
+        <DeleteButton taskDiv={taskDiv} taskId={taskContent[0].id}></DeleteButton>
     </div>
 </div>
 
