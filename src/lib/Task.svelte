@@ -117,7 +117,7 @@
             name="state" id={"selectState"+taskContent.id}>
             {#each states as state}
                 {#if taskContent[0]}
-                    {#if state.id === taskContent.state_id}
+                    {#if state.id === taskContent[0].state_id}
                         <option selected value={state.id}>
                             {state.state}
                         </option>
