@@ -42,6 +42,7 @@
         localStorage.setItem("selectStateIfFailed", select.value)
     }
     const handleBlur = async (e) =>{
+        console.log(taskDiv.dataset)
         if(inputTask.value == ""){
             inputTask.value=" "
         }
@@ -93,7 +94,7 @@
 
 </script>
 
-<div bind:this={taskDiv} class="task" id={taskContent.id} data-id={taskContent.id}>
+<div bind:this={taskDiv} class="task" id={taskContent.id} data-id={taskContent[0].id}>
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div  >
         <input data-id={taskContent.id}  
