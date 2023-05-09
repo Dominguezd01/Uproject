@@ -1,10 +1,18 @@
 <script>
+      import { onMount } from 'svelte';
     import Swal from "sweetalert2";
     import { API_ROUTE } from "../../../lib/routes.js";
     import { browser } from '$app/environment';
     let emailForm
     let passwordForm
     let userNameForm
+    onMount(() => {
+        if(browser){
+            if(sessionStorage.getItem("userId")){
+                location.href = "/boards"
+            }
+        }
+    })
     const handleSubmit = async () =>{
         let response = await fetch(`${API_ROUTE}/users/register`, {
             method: "POST", 
@@ -28,6 +36,7 @@
             console.log(response)
             if(browser){
                 sessionStorage.setItem("userId", response.sendData.id )
+                sessionStorage.setItem("userId", response.sendData.name )
             }
             setTimeout(() =>{
                 location.href = "/boards"

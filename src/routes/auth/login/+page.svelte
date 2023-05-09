@@ -2,11 +2,15 @@
     import { onMount } from 'svelte';
     import { API_ROUTE } from '../../../lib/routes.js';
     import { browser } from '$app/environment';
-
+    import Swal from 'sweetalert2';
     //import userId from "$app/stores"
 
     onMount(() => {
-
+        if(browser){
+            if(sessionStorage.getItem("userId")){
+                location.href = "/boards"
+            }
+        }
     })
 
  
@@ -30,8 +34,23 @@
             if(browser){
                 sessionStorage.setItem("userId", response.sendData.id)
             }
-     
-            location.href = `/boards`
+            Swal.fire({
+                title: "Welcome again",
+                text: `${response.message}`,
+                icon: "success",
+                timer: 1500,
+            })
+            setTimeout(() =>{
+                location.href = `/boards`
+            },1500)
+           
+        }else if(response.status == 401){
+            Swal.fire({
+                title: "Error",
+                text: `${response.message}`,
+                icon: "error",
+                timer: 2000
+            })
         }
     };
 </script>

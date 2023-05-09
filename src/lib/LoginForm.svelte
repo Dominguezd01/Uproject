@@ -2,20 +2,17 @@
     import { onMount } from 'svelte';
     import { API_ROUTE } from './routes.js';
     import { browser } from '$app/environment';
-    import { userId } from "../Store"
-    //import userId from "$app/stores"
-    console.log(userId)
-    let idUser
+    import Swal from "sweetalert2";
+
     onMount(() => {
-        userId.subscribe((data) =>{
-            idUser = data
-        })
+
     })
 
  
     let emailForm;
     let passwordForm;
     const handleSubmit = async () => {
+        try{
         let response = await fetch(`${API_ROUTE}/users/login`, {
             method: "POST",
             headers: {
@@ -28,13 +25,26 @@
         });
 
         response = await response.json();
-
+        console.log(response)
+        if(response.status == 401){
+            console.log(" NOT FINO")
+        }
+    
         if (response.status == 200) {
-            if(browser){
-                sessionStorage.setItem("userId", response.sendData.id)
-            }
-     
-            location.href = `/boards`
+            alert("FINO")
+
+        }else{
+            Swal.fire({
+                title: "Error",
+                text: `${response.message}`,
+                icon: "error",
+                timer: 2000
+            })
+        }
+        }catch(e){
+            Swal.fire({
+                title: "Error"
+            })
         }
     };
 

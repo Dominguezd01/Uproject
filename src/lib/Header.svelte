@@ -1,6 +1,8 @@
 <script>
     import UpLogo from "./UpLogo.svelte";
     import logo from '$lib/assets/UpLogoWhite.svg';
+    import Dropdown from "./Dropdown.svelte";
+    
 </script>
 <header class="navbar navbar-expand-lg navbar-light bg-light w-120">
     <div class="logoContainer">
@@ -9,7 +11,7 @@
     <div>
         <h1>UPROJECT</h1>   
     </div>
-    <div></div>
+    <Dropdown></Dropdown>
 </header>
 
 <style>
