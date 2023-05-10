@@ -1,5 +1,12 @@
 <script>
     import logo from '$lib/assets/UpLogoWhite.svg';
+    import { browser } from '$app/environment';
+    const logOut = () =>{
+      if(browser){
+        sessionStorage.clear()
+        location.href = "/auth/login"
+      }
+    }
 </script>
 
 <nav>
@@ -8,22 +15,12 @@
         <img src={logo} class="profile" />
         <ul>
           <li class="sub-item">
-            <span class="material-icons-outlined"> grid_view </span>
-            <p>Dashboard</p>
-          </li>
-          <li class="sub-item">
-            <span class="material-icons-outlined">
-              format_list_bulleted
-            </span>
-            <p>My Orders</p>
-          </li>
-          <li class="sub-item">
             <span class="material-icons-outlined"> manage_accounts </span>
-            <p>Update Profile</p>
+            <a href="/userProfile">Update Profile</a>
           </li>
           <li class="sub-item">
             <span class="material-icons-outlined"> logout </span>
-            <p>Logout</p>
+            <p on:click={logOut}>Logout</p>
           </li>
         </ul>
       </li>
