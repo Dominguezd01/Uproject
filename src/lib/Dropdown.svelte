@@ -103,10 +103,6 @@ ul li ul:hover {
   padding: 0.5rem 1.5rem;
 }
 
-.sub-item:hover {
-  background-color: rgba(232, 232, 232, 0.4);
-}
-
 .sub-item:hover .material-icons-outlined {
   color: #ff9800;
   transform: scale(1.08) translateY(-2px);
