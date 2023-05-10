@@ -5,15 +5,6 @@
 <nav>
     <ul>
       <li>
-        <span class="material-icons-outlined"> notifications </span>
-      </li>
-      <li>
-        <span class="material-icons-outlined"> favorite_border </span>
-      </li>
-      <li>
-        <span class="material-icons-outlined"> shopping_cart </span>
-      </li>
-      <li>
         <img src={logo} class="profile" />
         <ul>
           <li class="sub-item">
@@ -46,7 +37,7 @@ img {
 }
 
 nav {
-  background-color: #fff;
+  background-color: #ff682c;
   padding: 0 3rem;
   border-radius: 0.625rem;
 }
