@@ -10,7 +10,7 @@
   </script>
   <script>
     export let ref;
-  
+    console.log(ref)
     // do stuff
   </script>
 
