@@ -9,7 +9,7 @@
             if (!userId || Object.keys(userId).length == 0) {
                return false
             }
-            return userId;
+            return true;
         }
     };
 </script>
@@ -21,7 +21,7 @@
         <h1>UPROJECT</h1>   
     </div>
     {#if getUserId}
-    <Dropdown userId={getUserId()}></Dropdown>
+        <Dropdown userId={getUserId()}></Dropdown>
     {:else}
         <a href="/auth/login">Login</a>
 
