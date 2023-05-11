@@ -1,6 +1,6 @@
 <script context="module">
     export function load({ url }) {
-      const ref = url.searchParams.get('id')';
+      const ref = url.searchParams.get('id')
       return {
         props: {
           ref
