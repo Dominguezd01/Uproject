@@ -55,5 +55,6 @@
         border: none;
         border-radius: 15px;
         padding: 1em;
+        text-decoration: none;
     }
 </style>
