@@ -134,7 +134,7 @@ ul li ul:hover {
 }
 
 .sub-item:hover p {
-  color: #000;
+  color: #ff9800;
   cursor: pointer;
 }
 
@@ -152,4 +152,5 @@ ul li ul:hover {
 .link:hover{
   color: #ff9800;
 }
+
 </style>
