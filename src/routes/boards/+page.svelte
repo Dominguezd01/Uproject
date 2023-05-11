@@ -5,12 +5,10 @@
     import BoardDisplay from "../../lib/BoardDisplay.svelte";
     import Swal from "sweetalert2";
     import { API_ROUTE } from "../../lib/routes";
-    console.log(API_ROUTE)
     import Loader from "../../lib/Loader.svelte";
     import UpLogo from "../../lib/UpLogo.svelte";
     let searchParams;
     let inputValue;
-    import { userId } from "../../Store";
     let idUser
     import { browser } from '$app/environment';
 
