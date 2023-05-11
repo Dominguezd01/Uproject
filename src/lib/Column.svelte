@@ -268,8 +268,7 @@
     .main {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+
         gap: 0.2em;
         border-radius: 5px;
         padding: 0.3em;
