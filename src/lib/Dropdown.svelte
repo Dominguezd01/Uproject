@@ -35,7 +35,7 @@
         <ul>
           <li class="sub-item">
             <span class="material-icons-outlined"> manage_accounts </span>
-            <a href= "/user/{userId}">Update Profile</a>
+            <a class="link" href= "/user/{userId}">Update Profile</a>
           </li>
           <li class="sub-item">
             <span class="material-icons-outlined"> logout </span>
@@ -144,5 +144,8 @@ ul li ul:hover {
   font-weight: 500;
   margin: 0.4rem 0;
   flex: 1;
+}
+.link{
+  text-decoration: none;
 }
 </style>
