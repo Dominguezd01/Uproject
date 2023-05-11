@@ -351,7 +351,7 @@
         display: flex;
         flex-direction: column;
         padding: 0.3em;
-        width: min-content;
+        width: 900px;
         align-items: center;
         justify-content: center;
     }
