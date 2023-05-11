@@ -24,7 +24,7 @@
     <div>
         <h1>UPROJECT</h1>   
     </div>
-    {#if getUserId == true}
+    {#if getUserId() === true}
         <Dropdown userId={getUserId()}></Dropdown>
     {:else}
         <a href="/auth/login">Login</a>
