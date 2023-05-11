@@ -1,5 +1,6 @@
 <script>
     import logo from '$lib/assets/UpLogoWhite.svg';
+    import user from '$lib/assets/user.svg';
     import { browser } from '$app/environment';
     const logOut = () =>{
       if(browser){
@@ -24,7 +25,7 @@
 <nav>
     <ul>
       <li>
-        <img src={logo} class="profile" />
+        <img src={user} class="profile" />
         <ul>
           <li class="sub-item">
             <span class="material-icons-outlined"> manage_accounts </span>
