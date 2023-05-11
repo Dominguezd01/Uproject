@@ -8,7 +8,11 @@
         location.href = "/auth/login"
       }
     }
-
+    const getUserName = () =>{
+      if(browser){
+          return sessionStorage.getItem("userName")
+      }
+    }
     export let userId
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,7 +25,7 @@
   href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
   rel="stylesheet"
 />
-
+<span>{getUserName()}</span>
 <nav>
     <ul>
       <li>

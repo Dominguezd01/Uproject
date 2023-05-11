@@ -33,6 +33,7 @@
         if (response.status == 200) {
             if(browser){
                 sessionStorage.setItem("userId", response.sendData.id)
+                sessionStorage.setItem("userName",response.sendData.name )
             }
             Swal.fire({
                 title: "Welcome again",
