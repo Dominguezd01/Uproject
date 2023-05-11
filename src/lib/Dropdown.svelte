@@ -25,6 +25,7 @@
   href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
   rel="stylesheet"
 />
+<div class="main">
 <span>{getUserName()}</span>
 <nav>
     <ul>
@@ -43,7 +44,7 @@
       </li>
     </ul>
   </nav>
-
+</div>
 <style>
 img {
   max-width: 100%;
@@ -55,7 +56,11 @@ nav {
   padding: 0 3rem;
   border-radius: 0.625rem;
 }
-
+.main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 ul {
   margin: 0;
   padding: 0;
