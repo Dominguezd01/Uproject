@@ -353,7 +353,6 @@
     .columnContainer {
         display: grid;
         place-items: center;
-        grid-template-columns: repeat(2, 1fr);
         gap: 1em;
     }
     .deleteUserButton {
