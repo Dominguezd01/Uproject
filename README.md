@@ -1,6 +1,6 @@
 Hi! 👋
 
-Uproject is a trello clone made in Svelte for my final project.
+Uproject is a Monday.com clone made in Svelte for my final project.
 
 This is just the front end of the app but you can find the backend here https://github.com/Dominguezd01/UprojectBackend.
 
