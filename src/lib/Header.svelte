@@ -3,6 +3,7 @@
     import logo from '$lib/assets/UpLogoWhite.svg';
     import Dropdown from "./Dropdown.svelte";
     import { browser } from "$app/environment";
+    import { onMount } from "svelte";
     const getUserId = () => {
         if (browser) {
             let userId = sessionStorage.getItem("userId");
@@ -12,6 +13,9 @@
             return true;
         }
     };
+    onMount(() =>{
+        console.log(getUserId())
+    })
 </script>
 <header class="navbar navbar-expand-lg navbar-light bg-light w-120">
     <div class="logoContainer">
