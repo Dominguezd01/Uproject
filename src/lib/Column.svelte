@@ -352,6 +352,7 @@
         flex-direction: column;
         padding: 0.3em;
         width: min-content;
+        align-items: center;
         justify-content: center;
     }
 </style>
