@@ -25,11 +25,12 @@
   href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
   rel="stylesheet"
 />
-<div class="main">
-<span>{getUserName()}</span>
+
+
 <nav>
     <ul>
-      <li>
+      <li class="main">
+        <span>{getUserName()}</span>
         <img src={user} class="profile" />
         <ul>
           <li class="sub-item">
@@ -44,7 +45,7 @@
       </li>
     </ul>
   </nav>
-</div>
+
 <style>
 img {
   max-width: 100%;
