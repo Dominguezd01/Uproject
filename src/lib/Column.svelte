@@ -271,7 +271,6 @@
         align-items: center;
         justify-content: center;
         gap: 0.2em;
-        border: 1px solid rgb(235, 138, 100, 0.863);
         border-radius: 5px;
         padding: 0.3em;
         width: 900px;
