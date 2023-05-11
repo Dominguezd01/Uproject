@@ -147,5 +147,9 @@ ul li ul:hover {
 }
 .link{
   text-decoration: none;
+  color: #888888;
+}
+.link:hover{
+  color: #ff9800;
 }
 </style>
