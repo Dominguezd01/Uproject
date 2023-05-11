@@ -27,7 +27,7 @@
     {#if getUserId() === true}
         <Dropdown userId={getUserId()}></Dropdown>
     {:else}
-        <a href="/auth/login">Login</a>
+        <a class="loginButton" href="/auth/login">Login</a>
 
     {/if}
 
@@ -48,5 +48,12 @@
     .headerLogo{
         margin-left: -10em;
         width: 100px;
+    }
+    .loginButton{
+        background-color: white;
+        color: #ff682c;
+        border: none;
+        border-radius: 15px;
+        padding: 1em;
     }
 </style>
