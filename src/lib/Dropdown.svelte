@@ -7,6 +7,8 @@
         location.href = "/auth/login"
       }
     }
+
+    export let userId
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,7 +28,7 @@
         <ul>
           <li class="sub-item">
             <span class="material-icons-outlined"> manage_accounts </span>
-            <a href="/userProfile">Update Profile</a>
+            <a href= "/user/{userId}">Update Profile</a>
           </li>
           <li class="sub-item">
             <span class="material-icons-outlined"> logout </span>
