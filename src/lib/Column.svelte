@@ -241,7 +241,7 @@
     <div class="columnTitleContainer">
         <input class="columnTitle" value={columnInfo.title} bind:this={columnTitle} on:blur={editColumnTitle} type="text">
     </div>
-    <hr class="hr">
+    
     <div class="buttonContainer">
         <button class="buttonAdd" on:click={getNewTask}> Add a task! </button>
 
@@ -249,7 +249,7 @@
             Delete column
         </button>
     </div>
-
+    <hr class="hr">
     <div
         bind:this={divContainer}
         id="taskContainer"
