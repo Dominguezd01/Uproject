@@ -42,7 +42,7 @@
                 autocapitalize: "off",
             },
             showCancelButton: true,
-            confirmButtonText: "Look up",
+            confirmButtonText: "Add board!",
             showLoaderOnConfirm: true,
             preConfirm: async (name) => {
                 if(!name){
