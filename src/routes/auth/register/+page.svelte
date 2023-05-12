@@ -36,7 +36,7 @@
             console.log(response)
             if(browser){
                 sessionStorage.setItem("userId", response.sendData.id )
-                sessionStorage.setItem("userId", response.sendData.name )
+                sessionStorage.setItem("userName", response.sendData.name )
             }
             setTimeout(() =>{
                 location.href = "/boards"
