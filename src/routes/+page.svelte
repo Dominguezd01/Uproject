@@ -8,12 +8,12 @@
   <div class="buttonContainer">
       <a class="iconContainer" href="/auth/login">
         <span>Login!</span>
-        <img class="githubIcon" src={login} alt="">
+        <img class="githubIcon" src={login} alt="Login Button" width="20px">
         </a>
 
       <a class="iconContainer" href="https://github.com/Dominguezd01/uproject">
         <span>Github</span>
-        <img class="githubIcon" src={github} alt="">
+        <img class="githubIcon" src={github} alt="Github repo" width="20px">
       </a>
   </div>
 </div>
