@@ -1,5 +1,5 @@
 <script>
-    import user from "$lib/assets/User.svg";
+    import user from "$lib/assets/user.svg";
     import Swal from "sweetalert2";
     export let userInfoData;
     console.log(userInfoData);
