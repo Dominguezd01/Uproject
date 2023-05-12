@@ -15,16 +15,7 @@
     }
     export let userId
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
-  rel="stylesheet"
-/>
-<link
-  href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
-  rel="stylesheet"
-/>
+
 
 
 <nav>
@@ -35,7 +26,7 @@
         <ul>
           <li class="sub-item">
             <span class="material-icons-outlined"> manage_accounts </span>
-            <a class="link" href= "/user/{userId}">Update Profile</a>
+            <a class="link" href= "/user/edit">Update Profile</a>
           </li>
           <li class="sub-item">
             <span class="material-icons-outlined"> logout </span>
