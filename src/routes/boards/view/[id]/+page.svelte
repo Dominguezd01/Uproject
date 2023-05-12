@@ -316,6 +316,7 @@
                     src={createColumnIcon}
                     class="icon"
                     alt="Create column icon"
+                    width="20px"
                 />
             </button>
             <button class="addUserButton" on:click={addUser}>
