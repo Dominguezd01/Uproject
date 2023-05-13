@@ -54,6 +54,7 @@ nav {
   justify-content: center;
   gap: 0,2em;
 }
+
 ul {
   margin: 0;
   padding: 0;
@@ -130,9 +131,7 @@ ul li ul:hover {
 }
 
 .sub-item p {
-  font-size: 0.85rem;
   color: #888888;
-  font-weight: 500;
   margin: 0.4rem 0;
   flex: 1;
 }

@@ -16,6 +16,7 @@
     let columnContainer;
     let boardId;
     let userId;
+    let boardNameValue
     onMount(() => {
         if (browser) {
             localStorage.setItem(
@@ -302,13 +303,57 @@
             }
         }
     };
+
+    const handleEditBoardName = async () =>{
+        let options = {
+            method: "PUT",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify({
+                userId: getUserId(),
+                boardId: getBoardId(),
+                name: boardNameValue.value
+            })
+        }
+        let updateBoardName = await fetch(`${API_ROUTE}/boards/update`, options)
+
+        updateBoardName = await updateBoardName.json()
+
+        if(updateBoardName.status == 401){
+            Swal.fire({
+                title: "Error",
+                text: `${updateBoardName.message}`,
+                icon: "error",
+                timer: 2000,
+                showConfirmButton: false
+            })
+
+            setTimeout(() =>{
+                location.href = "/boards"
+            }, 2000)
+
+        }else if(updateBoardName.status == 400){
+            Swal.fire({
+                title: "Error",
+                text: `${updateBoardName.message}`,
+                icon: "error",
+            })
+        }else if(updateBoardName.status == 500){
+            Swal.fire({
+                title: "Error",
+                text: `${updateBoardName.message}`,
+                icon: "error",
+            })
+        }
+    }
 </script>
 
 <div id="main">
     {#await response}
         <Loader />
     {:then boardInfo}
-        <h1 class="boardName">{boardInfo["board"][0].name}</h1>
+        <input class="boardName" value={boardInfo["board"][0].name} on:blur={handleEditBoardName} bind:this={boardNameValue}>
         <div id="flexRight">
             <button class="createColumnButton" on:click={createColumn}>
                 <span>Create a new column!</span>
@@ -403,5 +448,23 @@
     }
     .icon {
         width: 20px;
+    }
+    .boardName{
+       
+        font-size: 20px;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        width: 450px;
+        background-color: #121212;
+        transition: 0.4s;
+        border: none;
+        height: 55px;
+        text-align: center;
+
+        border-radius: 15px;
+    }
+    .boardName:hover, .boardName:focus{
+        border: 0.4px #ff682c solid;
+        background-color: rgb(253, 140, 75);
     }
 </style>
