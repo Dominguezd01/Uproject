@@ -57,15 +57,15 @@
     <form id="formLogin" on:submit|preventDefault={handleSubmit}>
         <span class="inputContainer" id="userNameContainer">
             <label for="userName">Username</label>
-            <input class="inputForm" type="text" bind:value={userNameForm}>
+            <input class="inputForm" type="text" bind:value={userNameForm} id="userName">
         </span>
         <span class="inputContainer" id="emailContainer">
             <label for="email">Email</label>
-            <input class="inputForm" type="email" bind:value={emailForm}>
+            <input class="inputForm" type="email" bind:value={emailForm} id="email">
         </span>
         <span class="inputContainer" id="passwordContainer">
             <label for="password">Password</label>
-            <input  class="inputForm" type="password" bind:value={passwordForm}>
+            <input  class="inputForm" type="password" bind:value={passwordForm} id="password">
         </span>
         <input class="submit" type="submit">
     

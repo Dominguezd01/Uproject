@@ -61,7 +61,7 @@
         <div class="inputContainer">
             <span class="inputContainerSpan" id="userNameContainer">
                 <label for="email">Email</label>
-                <input class="inputForm" type="text" bind:value={emailForm} />
+                <input class="inputForm" type="text" bind:value={emailForm} id="email" />
             </span>
             <span class="inputContainerSpan" id="passwordContainer">
                 <label for="password">Password</label>
@@ -69,6 +69,7 @@
                     class="inputForm"
                     type="password"
                     bind:value={passwordForm}
+                    id="password"
                 />
             </span>
         </div>

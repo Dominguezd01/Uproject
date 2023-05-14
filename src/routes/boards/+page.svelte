@@ -127,7 +127,6 @@
 <style>
     #boardTitle{
         font-size: 5em;
-  
     }
     .addBoardButton{
         border: none;
@@ -139,6 +138,7 @@
         cursor: pointer;
         transition: 0.3s;
     }
+
     #main{
         display: grid;
         place-items: center;
@@ -150,5 +150,18 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 1em;
         margin-top: 1em;
+    }
+
+    @media screen and (max-width:700px) {
+        #boardTitle{
+            font-size: 3em;
+        }
+        #boardsContainer{
+            display: grid;
+            place-items: center;
+            grid-template-columns: 1fr;
+            gap: 1em;
+            margin-top: 1em;
+        }
     }
 </style>
