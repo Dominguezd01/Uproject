@@ -156,6 +156,8 @@
         width: 500px;
         border-radius: 10px;
         border: solid 1px rgb(204, 204, 204);
+        background-color: rgb(61, 61, 61);
+        transition: 0.4s;
     }
     .taskContent:hover, .taskContent:focus{
         border: 2px solid rgb(235, 138, 100, 0.863);
