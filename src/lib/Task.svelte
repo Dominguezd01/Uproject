@@ -152,7 +152,14 @@
         padding: 1em;
         margin-bottom: 0.3em;
     }
-
+    .taskContent{
+        width: 500px;
+        border-radius: 10px;
+        border: solid 1px rgb(204, 204, 204);
+    }
+    .taskContent:hover, .taskContent:focus{
+        border: 2px solid rgb(235, 138, 100, 0.863);
+    }
     .taskContent, select{
         height: 35px;
         text-align: center;
