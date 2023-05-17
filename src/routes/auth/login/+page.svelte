@@ -76,7 +76,7 @@
         <input class="submit" type="submit" />
     </form>
 
-    <a class="loginRedirect" href="/auth/register">Are you a new? Sing Up!</a>
+    <a class="loginRedirect" href="/auth/register">Are you a new user? Sign Up!</a>
 </div>
 
 <style>
