@@ -157,7 +157,7 @@
     button:hover .icon {
         width: 150px;
         border-left: none;
-        transform: translateX(30px);
+        transform: translateX(-10px);
     }
 
     button:focus {
