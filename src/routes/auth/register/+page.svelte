@@ -33,7 +33,6 @@
                 `${response.message}`,
                 "success"
             )
-            console.log(response)
             if(browser){
                 sessionStorage.setItem("userId", response.sendData.id )
                 sessionStorage.setItem("userName", response.sendData.name )

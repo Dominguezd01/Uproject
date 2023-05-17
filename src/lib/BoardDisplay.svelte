@@ -22,9 +22,6 @@
         }
 
     }
-    //console.log(board)
-
-    //let userId = sessionStorage.getItem("userId")
     let divClickable
     const handleClick = (e) =>{
         let id = divClickable.dataset.id
@@ -68,7 +65,6 @@
                     );
 
                     responseDeleteColumn = await responseDeleteColumn.json();
-                    console.log(responseDeleteColumn);
                     if (responseDeleteColumn.status == 200) {
                         Swal.fire({
                             title: "Board deleted",

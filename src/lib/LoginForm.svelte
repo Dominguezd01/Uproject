@@ -25,9 +25,8 @@
         });
 
         response = await response.json();
-        console.log(response)
         if(response.status == 401){
-            console.log(" NOT FINO")
+   
         }
     
         if (response.status == 200) {
@@ -48,7 +47,6 @@
         }
     };
 
-    console.log(idUser)
 </script>
 
 <div id="formContainer">

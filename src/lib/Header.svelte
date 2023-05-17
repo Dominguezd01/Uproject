@@ -13,9 +13,6 @@
             return true;
         }
     };
-    onMount(() =>{
-        console.log(getUserId())
-    })
 </script>
 <header class="navbar navbar-expand-lg navbar-light bg-light w-120">
     <div class="logoContainer">

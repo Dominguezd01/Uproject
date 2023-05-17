@@ -9,8 +9,6 @@
     export let taskContent
     export let states
 
-    console.log(taskContent)
-
     let content = taskContent[0].content
     let state = taskContent.states
     let inputTask
@@ -42,7 +40,6 @@
         localStorage.setItem("selectStateIfFailed", select.value)
     }
     const handleBlur = async (e) =>{
-        console.log(taskDiv.dataset)
         if(inputTask.value == ""){
             inputTask.value=" "
         }
@@ -64,7 +61,6 @@
         try{
             let response = await fetch(`${API_ROUTE}/tasks/edit`, options)
             response = await response.json()
-            console.log(response)
             if(response.status == 401){
                 Swal.fire({
                     title: "Error",

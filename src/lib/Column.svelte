@@ -8,7 +8,6 @@
     import { browser } from '$app/environment';
     export let columnInfo;
     export let states;
-    console.log(columnInfo);
     let divContainer;
     let columnDiv;
     let columnTitle
@@ -61,7 +60,7 @@
                         boardId: getBoardId()
                     })
                 };
-                console.log(options)
+
 
                 
                     let responseAddTask = await fetch(
@@ -69,7 +68,6 @@
                         options
                     );
                     responseAddTask = await responseAddTask.json();
-                    console.log(responseAddTask);
                     if (responseAddTask.status == 200) {
                         new Task({
                             target: divContainer,
@@ -145,7 +143,6 @@
                         options
                     );
                     responseDeleteColumn = await responseDeleteColumn.json();
-                    console.log(responseDeleteColumn);
                     if (responseDeleteColumn.status == 200) {
                         Swal.fire({
                             title: "Column deleted",
@@ -203,7 +200,6 @@
         }
         let response = await fetch(`${API_ROUTE}/columns/editColumnTitle`, options)
         response = await response.json()
-        console.log(response)
         if(response.state == 200){
             let previousStyle = columnTitle.style.border
             columnTitle.style.border = "1px solid green"

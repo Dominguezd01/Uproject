@@ -5,7 +5,7 @@
     import { onMount } from "svelte";
     import { browser } from "$app/environment";
     export let userInfoData;
-    console.log(userInfoData);
+    
     let oldPass,
         userName,
         userEmail,

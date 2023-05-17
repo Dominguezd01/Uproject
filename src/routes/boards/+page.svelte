@@ -67,7 +67,6 @@
                         throw new Error(responseCreateBoard.statusText);
                     }
                     responseCreateBoard = await responseCreateBoard.json();
-                    console.log(responseCreateBoard);
                     if (responseCreateBoard.status == 200) {
                         Swal.fire({
                             title: "Board created successfully",
@@ -103,7 +102,6 @@
         return res.boards;
     }
     let getBoards = getUserBoards()
-    //console.log(getBoards);
 </script>
 <div id="main">
 

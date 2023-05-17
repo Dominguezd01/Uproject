@@ -67,8 +67,6 @@
         let response = await fetch(`${API_ROUTE}/boards/view`, options);
 
         response = await response.json();
-        console.log(response);
-        
         if (response.status == 404) {
             location.href = "/boards";
         }
@@ -80,7 +78,6 @@
 
     const getBoardInfo = async () => {
         const board = await getBoard();
-        console.log(board);
         return board;
     };
     let response = getBoardInfo();
@@ -117,7 +114,6 @@
                 );
 
                 responseCreateColumn = await responseCreateColumn.json();
-                console.log(responseCreateColumn);
                 if (responseCreateColumn.status == 200) {
                     new Column({
                         target: columnContainer,
@@ -192,7 +188,6 @@
                 );
 
                 responseAddUser = await responseAddUser.json();
-                console.log(responseAddUser);
                 if (responseAddUser.status == 200) {
                     Swal.fire({
                         title: "User added",
@@ -234,9 +229,7 @@
         );
 
         response = await response.json();
-        console.log(response);
         if (response.status == 200) {
-            console.log(response.users);
             let optionSwal = [];
             response.users.forEach((user) => {
                 optionSwal.push({ user });
@@ -270,7 +263,6 @@
                     );
 
                     response = await response.json();
-                    console.log(response);
 
                     if (response.status == 200) {
                         Swal.fire({
