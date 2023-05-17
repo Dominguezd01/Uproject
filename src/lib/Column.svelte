@@ -354,5 +354,6 @@
         width: 900px;
         align-items: center;
         justify-content: center;
+        gap: 0.2em
     }
 </style>

@@ -149,7 +149,7 @@
         border: 2px solid rgb(235, 138, 100, 0.863);
         border-radius: 15px;
         width: min-content;
-        padding: 1em;
+        padding: 0.4em;
         margin-bottom: 0.3em;
     }
     .taskContent{
