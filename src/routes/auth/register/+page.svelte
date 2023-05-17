@@ -69,7 +69,7 @@
         <input class="submit" type="submit">
     
     </form>
-    <a class="loginRedirect" href="/auth/login">Are you a memeber?</a>
+    <a class="loginRedirect" href="/auth/login">Are you a memeber?Log in!</a>
 </div>
 
 
