@@ -16,7 +16,11 @@
 </script>
 <header class="navbar navbar-expand-lg navbar-light bg-light w-120">
     <div class="logoContainer">
-       <a href="/boards"><img class="headerLogo" width="100px" src={logo} alt="Logo of the app"></a> 
+        {#if getUserId() === true}
+            <a href="/boards"><img class="headerLogo" width="100px" src={logo} alt="Logo of the app"></a> 
+        {:else}
+            <a href="/auth/login"><img class="headerLogo" width="100px" src={logo} alt="Logo of the app"></a> 
+        {/if}
     </div>
     <div>
         <h1>UPROJECT</h1>   
