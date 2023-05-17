@@ -159,22 +159,19 @@
         background-color: #121212;
         transition: 0.4s;
     }
-    .taskContent:hover, .taskContent:focus, select:hover, select:focus{
+    .taskContent:hover, .taskContent:focus{
         border: 2px solid rgb(235, 138, 100, 0.863);
         background-color: #f58f58;
     }
+
     .taskContent, select{
         height: 35px;
         text-align: center;
     }
-    select:nth-child(1):hover{
-        background-color: #f58f58;
-    }
+
     option {
         text-align: center;
-
     }
-
 
     #buttonContainer{
         display: flex;
