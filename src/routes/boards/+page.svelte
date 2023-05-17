@@ -105,12 +105,13 @@
 </script>
 <div id="main">
 
-    <h1 id="boardTitle">BOARDS</h1>
+ 
   
    
         {#await getBoards}
             <Loader></Loader>
         {:then boards}
+            <h1 id="boardTitle">BOARDS</h1>
             <button class="addBoardButton" on:click={createBoard}>Add a board!</button>
             <div id="boardsContainer">
             {#each boards as board }
@@ -130,7 +131,7 @@
         border: none;
         border-radius: 15px;
         padding: 1em;
-        background-color: rgba(235, 138, 100, 0.863);
+        background-color: #ff682c;
         color: white;
         border: 1px rgba(250, 128, 114, 0.336) solid;
         cursor: pointer;
