@@ -16,7 +16,7 @@
 </script>
 <header class="navbar navbar-expand-lg navbar-light bg-light w-120">
     <div class="logoContainer">
-       <a href="/"><img class="headerLogo" width="100px" src={logo} alt="Logo of the app"></a> 
+       <a href="/boards"><img class="headerLogo" width="100px" src={logo} alt="Logo of the app"></a> 
     </div>
     <div>
         <h1>UPROJECT</h1>   
