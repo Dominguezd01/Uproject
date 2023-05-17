@@ -133,7 +133,7 @@
 
     button .icon {
         position: absolute;
-        transform: translateX(100px);
+        transform: translateX(90px);
         height: 40px;
         width: 40px;
         display: flex;
