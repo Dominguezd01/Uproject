@@ -159,9 +159,12 @@
         background-color: #121212;
         transition: 0.4s;
     }
-    .taskContent:hover, .taskContent:focus, select:hover{
+    .taskContent:hover, .taskContent:focus{
         border: 2px solid rgb(235, 138, 100, 0.863);
         background-color: #f58f58;
+    }
+    select:hover{
+        border: 2px solid rgb(235, 138, 100, 0.863);
     }
 
     .taskContent, select{
