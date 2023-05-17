@@ -140,7 +140,11 @@
         overflow: hidden;
         cursor: pointer;
     }
-
+    .board:hover{
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.986);
+        -moz-box-shadow: 10px 10px 5px 0px rgb(235, 138, 100);
+        box-shadow: 10px 10px 5px 0px rgb(235, 138, 100);
+    }
     .deleteBoard{
         border: none;
         width: 20px;
