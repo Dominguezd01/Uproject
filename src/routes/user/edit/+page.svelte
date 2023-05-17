@@ -42,3 +42,9 @@
         <UserInfo userInfoData={userInfoData.sendData}></UserInfo>
     {/await}
 </main>
+<style>
+    main{
+        display: grid;
+        place-items:center;
+    }
+</style>
