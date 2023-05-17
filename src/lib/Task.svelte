@@ -172,7 +172,7 @@
         text-align: center;
     }
     select{
-        border-radius: 10px;
+        border-radius: 5px;
         border: solid 1px rgb(204, 204, 204);
         background-color: #121212;
         transition: 0.4s;
