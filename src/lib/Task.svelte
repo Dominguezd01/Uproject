@@ -167,7 +167,7 @@
         height: 35px;
         text-align: center;
     }
-    select:nth-child(1){
+    select:nth-child(1):hover{
         background-color: #f58f58;
     }
     option {
