@@ -387,6 +387,7 @@
     }
     .boardName {
         text-transform: capitalize;
+        font-size: 35px;
     }
     .columnContainer {
         display: grid;
@@ -400,7 +401,7 @@
         background-color: #ff2c2c;
         color: white;
         transition: 0.3s;
-        font-size: 15px;
+        font-size: 20px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -417,7 +418,7 @@
         color: white;
         border: 1px rgba(250, 128, 114, 0.336) solid;
         transition: 0.3s;
-        font-size: 15px;
+        font-size: 20px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -442,8 +443,7 @@
         width: 20px;
     }
     .boardName{
-       
-        font-size: 20px;
+        font-size: 35px;
         margin-top: 1em;
         margin-bottom: 1em;
         width: 450px;
@@ -452,9 +452,9 @@
         border: none;
         height: 55px;
         text-align: center;
-
         border-radius: 15px;
     }
+    
     .boardName:hover, .boardName:focus{
         border: 0.4px #ff682c solid;
         background-color: rgb(253, 140, 75);
