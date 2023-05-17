@@ -133,7 +133,7 @@
 
     button .icon {
         position: absolute;
-        transform: translateX(40px);
+        transform: translateX(110px);
         height: 40px;
         width: 40px;
         display: flex;
@@ -157,7 +157,7 @@
     button:hover .icon {
         width: 150px;
         border-left: none;
-        transform: translateX(0);
+        transform: translateX(10px);
     }
 
     button:focus {
