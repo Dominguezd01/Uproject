@@ -1,7 +1,7 @@
 <script>
       import github from '$lib/assets/github.svg';
       import login from '$lib/assets/login.svg';
-    
+
 </script>
 <div id="info" >
   <h1 class="animate__animated animate__bounce animate__delay-2s">Welcome to UPROJECT</h1>
@@ -32,6 +32,7 @@
   place-items: center;
   width: 100%;
   height: 100%;
+  background-image: url("../lib/assets/waves.svg");
 }
 
 h1{
