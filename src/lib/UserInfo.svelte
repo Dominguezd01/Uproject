@@ -201,6 +201,7 @@
         border-radius: 5px;
         border: none;
         text-align: center;
+        background-color: #2b303a;
     }
 
     .submit {
