@@ -94,10 +94,10 @@
         transition: 0.2S;
         background-color: #2b303a;
     }
-    .inputForm:focus{
-        -webkit-box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.767);
-        -moz-box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.808);
-        box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.774);
+    .inputForm:focus, .inputForm:hover, .submit:hover{
+        -webkit-box-shadow: 10px 10px 5px 0px #ff682c;
+        -moz-box-shadow: 10px 10px 5px 0px #ff682c;
+        box-shadow: 10px 10px 5px 0px #ff682c;
     }
     .submit{
         width: 150px;

@@ -114,10 +114,10 @@
         border-radius: 15px;
         transition: 0.3s;
     }
-    .inputForm:focus, .submit:hover{
-        -webkit-box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.986);
-        -moz-box-shadow: 10px 10px 5px 0px rgb(235, 138, 100);
-        box-shadow: 10px 10px 5px 0px rgb(235, 138, 100);
+    .inputForm:focus, .submit:hover, .inputForm:hover{
+        -webkit-box-shadow: 10px 10px 5px 0px #ff682c;
+        -moz-box-shadow: 10px 10px 5px 0px #ff682c;
+        box-shadow: 10px 10px 5px 0px #ff682c;
     }
     .formLogin {
         display: grid;
