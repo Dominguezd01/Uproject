@@ -3,20 +3,23 @@
       import login from '$lib/assets/login.svg';
 
 </script>
-<div id="info" >
-  <h1 class="animate__animated animate__bounce animate__delay-2s">Welcome to UPROJECT</h1>
-  <div class="buttonContainer">
-      <a class="iconContainer" href="/auth/login">
-        <span>Login!</span>
-        <img class="githubIcon" src={login} alt="Login Button" width="20px">
+<main>
+  <div id="info" >
+    <h1 class="animate__animated animate__bounce animate__delay-2s">Welcome to UPROJECT</h1>
+    <div class="buttonContainer">
+        <a class="iconContainer" href="/auth/login">
+          <span>Login!</span>
+          <img class="githubIcon" src={login} alt="Login Button" width="20px">
+          </a>
+  
+        <a class="iconContainer" href="https://github.com/Dominguezd01/uproject">
+          <span>Github</span>
+          <img class="githubIcon" src={github} alt="Github repo" width="20px">
         </a>
-
-      <a class="iconContainer" href="https://github.com/Dominguezd01/uproject">
-        <span>Github</span>
-        <img class="githubIcon" src={github} alt="Github repo" width="20px">
-      </a>
+    </div>
   </div>
-</div>
+</main>
+
 <!--<img class="imageBackground" src={waves} alt="">-->
 
 <style>
@@ -32,6 +35,8 @@
   place-items: center;
   width: 100%;
   height: 100%;
+}
+main{
   background-image: url("../lib/assets/waves.svg");
 }
 
