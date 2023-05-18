@@ -202,6 +202,7 @@
         border: none;
         text-align: center;
         background-color: #2b303a;
+        border: solid 1px rgb(204, 204, 204);
     }
 
     .submit {
