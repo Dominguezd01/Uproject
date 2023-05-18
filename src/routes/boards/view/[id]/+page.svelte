@@ -447,7 +447,7 @@
         margin-top: 1em;
         margin-bottom: 1em;
         width: 450px;
-        background-color: #121212;
+        background-color: #2b303a;
         transition: 0.4s;
         border: none;
         height: 55px;

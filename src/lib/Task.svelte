@@ -152,7 +152,7 @@
         width: 500px;
         border-radius: 10px;
         border: solid 1px rgb(204, 204, 204);
-        background-color: #121212;
+        background-color: #2b303a;
         transition: 0.4s;
         font-size: 20px;
     }
@@ -171,7 +171,7 @@
     select{
         border-radius: 5px;
         border: solid 1px rgb(204, 204, 204);
-        background-color: #121212;
+        background-color: #2b303a;
         transition: 0.4s;
     }
     option {
