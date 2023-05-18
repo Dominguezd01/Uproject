@@ -107,11 +107,12 @@
         border: none;
         border-radius: 15px;
         transition: 0.3s;
+        cursor: pointer;
     }
     .submit:hover{
         -webkit-box-shadow: 10px 10px 60px 0px rgba(231,215,215,1);
--moz-box-shadow: 10px 10px 60px 0px rgba(231,215,215,1);
-box-shadow: 10px 10px 60px 0px rgba(231,215,215,1);
+        -moz-box-shadow: 10px 10px 60px 0px rgba(231,215,215,1);
+        box-shadow: 10px 10px 60px 0px rgba(231,215,215,1);
     }
     .loginRedirect{
         margin-top: 1em;
