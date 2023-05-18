@@ -38,6 +38,7 @@
 }
 main{
   background-image: url("../lib/assets/waves.svg");
+  background-size: auto;
 }
 
 h1{
