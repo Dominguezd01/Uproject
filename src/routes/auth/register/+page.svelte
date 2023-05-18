@@ -94,7 +94,7 @@
         transition: 0.2S;
         background-color: #2b303a;
     }
-    .inputForm:focus, .inputForm:hover, {
+    .inputForm:focus, .inputForm:hover {
         -webkit-box-shadow: 10px 10px 5px 0px #ff682c;
         -moz-box-shadow: 10px 10px 5px 0px #ff682c;
         box-shadow: 10px 10px 5px 0px #ff682c;
