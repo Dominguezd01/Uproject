@@ -435,9 +435,9 @@
 
     .createColumnButton:hover,
     .addUserButton:hover {
-        -webkit-box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.473);
-        -moz-box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.473);
-        box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.473);
+        -webkit-box-shadow: 10px 10px 5px 0px #ff682c;
+        -moz-box-shadow: 10px 10px 5px 0px #ff682c;
+        box-shadow: 10px 10px 5px 0px #ff682c;
     }
     .icon {
         width: 20px;

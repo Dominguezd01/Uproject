@@ -98,12 +98,12 @@
     .inputForm{
         width: 300px;
         height: 50px;
-        border: solid 1px #00000048;
         border-radius: 15px;
         outline: none;
         text-align: center;
         transition: 0.2S;
         background-color: #2b303a;
+        border: solid 1px rgb(204, 204, 204);
     }
     .submit{
         width: 150px;
