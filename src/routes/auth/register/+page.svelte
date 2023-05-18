@@ -109,9 +109,9 @@
         transition: 0.3s;
     }
     .submit:hover{
-        -webkit-box-shadow: 10px 10px 5px 0px #ffffff;
-        -moz-box-shadow: 10px 10px 5px 0px #ffffff;
-        box-shadow: 10px 10px 5px 0px #ffffff;
+        -webkit-box-shadow: 10px 10px 5px 0px #e7d7d7;
+        -moz-box-shadow: 10px 10px 5px 0px #e7d7d7;
+        box-shadow: 10px 10px 5px 0px #e7d7d7;
     }
     .loginRedirect{
         margin-top: 1em;
