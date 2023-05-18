@@ -92,6 +92,7 @@
         outline: none;
         text-align: center;
         transition: 0.2S;
+        background-color: #2b303a;
     }
     .inputForm:focus{
         -webkit-box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.767);

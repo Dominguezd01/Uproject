@@ -103,6 +103,7 @@
         outline: none;
         text-align: center;
         transition: 0.2S;
+        background-color: #2b303a;
     }
     .submit{
         width: 150px;

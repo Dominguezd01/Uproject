@@ -139,6 +139,7 @@
         gap: 1em;
         overflow: hidden;
         cursor: pointer;
+        transition: 0.2s;
     }
     .board:hover{
         -webkit-box-shadow: 10px 10px 5px 0px rgba(235, 138, 100, 0.986);
