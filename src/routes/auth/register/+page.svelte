@@ -94,7 +94,7 @@
         transition: 0.2S;
         background-color: #2b303a;
     }
-    .inputForm:focus, .inputForm:hover, .submit:hover{
+    .inputForm:focus, .inputForm:hover, {
         -webkit-box-shadow: 10px 10px 5px 0px #ff682c;
         -moz-box-shadow: 10px 10px 5px 0px #ff682c;
         box-shadow: 10px 10px 5px 0px #ff682c;
@@ -108,7 +108,11 @@
         border-radius: 15px;
         transition: 0.3s;
     }
-    
+    .submit:hover{
+        -webkit-box-shadow: 10px 10px 5px 0px #ffffff;
+        -moz-box-shadow: 10px 10px 5px 0px #ffffff;
+        box-shadow: 10px 10px 5px 0px #ffffff;
+    }
     .loginRedirect{
         margin-top: 1em;
         color: rgb(255, 120, 67);
