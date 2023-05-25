@@ -2,6 +2,7 @@
     export let taskId;
     export let taskDiv;
     import {API_ROUTE} from "./routes.js";
+    import deleteIcon from '$lib/assets/delete.svg';
     import Swal from "sweetalert2";
     import { browser } from '$app/environment';
     const getUserId = () =>{
@@ -91,80 +92,25 @@
     };
 </script>
 
-<button on:click={handleClick} class="noselect"
-    ><span class="text">Delete</span><span class="icon"
-        ><svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-        >
-            <path
-                d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"
-            />
-        </svg></span
-    >
-</button>
+
+<img on:click={handleClick} src={deleteIcon} alt="deletIcon">
+
+   
+
 
 <style>
-    button {
-        width: 150px;
-        height: 20px;
+    img {
+        width: 50px;
         cursor: pointer;
         display: flex;
         align-items: center;
-        background: red;
         border: none;
         border-radius: 5px;
-        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
-        background: #e62222;
     }
-
-    button,
-    button span {
-        transition: 200ms;
-    }
-
-    button .text {
-        transform: translateX(35px);
-        color: white;
-        font-weight: bold;
-    }
-
-    button .icon {
-        position: absolute;
-        transform: translateX(110px);
-        height: 40px;
-        width: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    button svg {
-        width: 15px;
-        fill: #eee;
-    }
-
-    button:hover {
-        background: #ff3636;
-    }
-
-    button:hover .text {
-        color: transparent;
-    }
-
-    button:hover .icon {
-        width: 150px;
-        border-left: none;
-        transform: translateX(-5px);
-    }
-
-    button:focus {
-        outline: none;
-    }
-
-    button:active .icon svg {
-        transform: scale(0.8);
+    @media screen and (max-width: 500px){
+        img{
+            width: 50px;
+            height: 20px;
+        }
     }
 </style>

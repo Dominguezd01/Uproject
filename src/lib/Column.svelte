@@ -1,38 +1,36 @@
 <script>
     // @ts-nocheck
 
-    
-    import Task from "./Task.svelte"
+    import Task from "./Task.svelte";
     import Swal from "sweetalert2";
     import { API_ROUTE } from "./routes";
-    import { browser } from '$app/environment';
+    import { browser } from "$app/environment";
     export let columnInfo;
     export let states;
     let divContainer;
     let columnDiv;
-    let columnTitle
+    let columnTitle;
 
-    const getUserId = () =>{
+    const getUserId = () => {
         if (browser) {
-            let idUser = sessionStorage.getItem("userId")
-            if(!idUser || Object.keys(idUser).length === 0){
-                location.href="/auth/login"
+            let idUser = sessionStorage.getItem("userId");
+            if (!idUser || Object.keys(idUser).length === 0) {
+                location.href = "/auth/login";
             }
-            return idUser
+            return idUser;
         }
+    };
+    const getBoardId = () => {
+        if (browser) {
+            let boardId = localStorage.getItem("boardId");
 
-    }
-    const getBoardId = () =>{
-        if (browser) {
-            let boardId = localStorage.getItem("boardId")
-                
-            if(!boardId){
-                location.href="/boards"
+            if (!boardId) {
+                location.href = "/boards";
             }
-        
-            return boardId
+
+            return boardId;
         }
-    }
+    };
     const getNewTask = async () => {
         Swal.fire({
             title: "Your new task",
@@ -43,10 +41,10 @@
             showCancelButton: true,
             confirmButtonText: "Add task!",
             showLoaderOnConfirm: true,
-            
+
             preConfirm: async (content) => {
-                if(!content){
-                    content = " "
+                if (!content) {
+                    content = " ";
                 }
                 let options = {
                     method: "POST",
@@ -57,59 +55,54 @@
                         content: content,
                         columnId: divContainer.dataset.id,
                         userId: getUserId(),
-                        boardId: getBoardId()
-                    })
+                        boardId: getBoardId(),
+                    }),
                 };
 
+                let responseAddTask = await fetch(
+                    `${API_ROUTE}/tasks/add`,
+                    options
+                );
+                responseAddTask = await responseAddTask.json();
+                if (responseAddTask.status == 200) {
+                    new Task({
+                        target: divContainer,
+                        props: {
+                            // @ts-ignore
+                            taskContent: [
+                                {
+                                    // @ts-ignore
+                                    id: responseAddTask.task.id,
+                                    // @ts-ignore
+                                    content: responseAddTask.task.content,
+                                    // @ts-ignore
+                                    state_id: responseAddTask.task.state_id,
+                                },
+                            ],
 
-                
-                    let responseAddTask = await fetch(
-                        `${API_ROUTE}/tasks/add`,
-                        options
-                    );
-                    responseAddTask = await responseAddTask.json();
-                    if (responseAddTask.status == 200) {
-                        new Task({
-                            target: divContainer,
-                            props: {
-                                // @ts-ignore
-                                taskContent: [
-                                    {
-                                        // @ts-ignore
-                                        id: responseAddTask.task.id,
-                                        // @ts-ignore
-                                        content: responseAddTask.task.content,
-                                        // @ts-ignore
-                                        state_id: responseAddTask.task.state_id,
-       
-                                    },
-                                ],
+                            states: responseAddTask.states,
+                        },
+                    });
+                } else if (responseAddTask.status == 401) {
+                    Swal.fire({
+                        text: `${responseAddTask.message}`,
+                        icon: "error",
+                        showConfirmButton: false,
+                        timer: 1300,
+                    });
 
-                                states: responseAddTask.states,
-                            },
-                        });
-                    }else if(responseAddTask.status == 401){
-                        Swal.fire({
-                            text: `${responseAddTask.message}`,
-                            icon: "error",
-                            showConfirmButton: false,
-                            timer: 1300
-                        });
-
-                        setTimeout(() =>{
-                            location.href = "/boards"
-                        }, 1300)
-                    }else{
-                        Swal.fire({
-                            text: `${responseAddTask.message}`,
-                            icon: "error",
-                            showConfirmButton: false,
-                            timer: 1300
-                        });
-
-                    }
-
-                },
+                    setTimeout(() => {
+                        location.href = "/boards";
+                    }, 1300);
+                } else {
+                    Swal.fire({
+                        text: `${responseAddTask.message}`,
+                        icon: "error",
+                        showConfirmButton: false,
+                        timer: 1300,
+                    });
+                }
+            },
             allowOutsideClick: () => !Swal.isLoading(),
         });
     };
@@ -134,110 +127,117 @@
                     body: JSON.stringify({
                         columnId: divContainer.dataset.id,
                         userId: getUserId(),
-                        boardId: getBoardId()
+                        boardId: getBoardId(),
                     }),
                 };
-            
-                    let responseDeleteColumn = await fetch(
-                        `${API_ROUTE}/columns/delete`,
-                        options
-                    );
-                    responseDeleteColumn = await responseDeleteColumn.json();
-                    if (responseDeleteColumn.status == 200) {
-                        Swal.fire({
-                            title: "Column deleted",
-                            text: `${responseDeleteColumn.message}`,
-                            icon: "success",
-                            showConfirmButton: true,
-                        });
 
-                        columnDiv.remove();
-                    }
-                    else if(responseDeleteColumn.status == 401){
-                        Swal.fire({
-                            title: "Error",
-                            text: `${responseDeleteColumn.message}`,
-                            icon: "error",
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
+                let responseDeleteColumn = await fetch(
+                    `${API_ROUTE}/columns/delete`,
+                    options
+                );
+                responseDeleteColumn = await responseDeleteColumn.json();
+                if (responseDeleteColumn.status == 200) {
+                    Swal.fire({
+                        title: "Column deleted",
+                        text: `${responseDeleteColumn.message}`,
+                        icon: "success",
+                        showConfirmButton: true,
+                    });
 
-                        setTimeout(() =>{
-                            location.href = "/boards"
-                        }, 1500)
-                    }else{
-                        Swal.fire({
-                            title: "Error",
-                            text: `${responseDeleteColumn.message}`,
-                            icon: "error",
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        setTimeout(() =>{
-                            location.reload()
-                        }, 1500)
-                    }
+                    columnDiv.remove();
+                } else if (responseDeleteColumn.status == 401) {
+                    Swal.fire({
+                        title: "Error",
+                        text: `${responseDeleteColumn.message}`,
+                        icon: "error",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+
+                    setTimeout(() => {
+                        location.href = "/boards";
+                    }, 1500);
+                } else {
+                    Swal.fire({
+                        title: "Error",
+                        text: `${responseDeleteColumn.message}`,
+                        icon: "error",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1500);
+                }
             },
             allowOutsideClick: () => !Swal.isLoading(),
         });
     };
 
     const editColumnTitle = async () => {
-        if(columnTitle.value == ""){
-            columnTitle.value = " "
+        if (columnTitle.value == "") {
+            columnTitle.value = " ";
         }
         const options = {
             method: "PUT",
             headers: {
-                "Content-Type" : "application/json"
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 columnId: columnInfo.id,
                 columnTitle: columnTitle.value,
                 userId: getUserId(),
-                boardId: getBoardId()
-            })
-        }
-        let response = await fetch(`${API_ROUTE}/columns/editColumnTitle`, options)
-        response = await response.json()
-        if(response.state == 200){
-            let previousStyle = columnTitle.style.border
-            columnTitle.style.border = "1px solid green"
-            setTimeout(() =>{
-                columnTitle.style.border = previousStyle
-            },1000)
-        }else if(response.state == 401){
+                boardId: getBoardId(),
+            }),
+        };
+        let response = await fetch(
+            `${API_ROUTE}/columns/editColumnTitle`,
+            options
+        );
+        response = await response.json();
+        if (response.state == 200) {
+            let previousStyle = columnTitle.style.border;
+            columnTitle.style.border = "1px solid green";
+            setTimeout(() => {
+                columnTitle.style.border = previousStyle;
+            }, 1000);
+        } else if (response.state == 401) {
             Swal.fire({
                 title: "Error",
                 text: "You are not part of this board",
                 showConfirmButton: false,
                 icon: "error",
-                timer: 1500
-            })
-            setTimeout(() =>{
-                location.href = "/boards"
-            }, 1500)
-        }
-        else{
+                timer: 1500,
+            });
+            setTimeout(() => {
+                location.href = "/boards";
+            }, 1500);
+        } else {
             Swal.fire({
                 title: "Error",
                 text: `${response.message}`,
                 showConfirmButton: false,
                 icon: "error",
-                timer: 1500
-            })
-            setTimeout(() =>{
-                location.reload()
-            }, 1500)
+                timer: 1500,
+            });
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
         }
-    }
+    };
 </script>
 
 <main bind:this={columnDiv} class="main">
     <div class="columnTitleContainer">
-        <input class="columnTitle" value={columnInfo.title} bind:this={columnTitle} on:blur={editColumnTitle} type="text">
+        <input
+            class="columnTitle"
+            value={columnInfo.title}
+            bind:this={columnTitle}
+            on:blur={editColumnTitle}
+            type="text"
+        />
     </div>
-    
+
     <div class="buttonContainer">
         <button class="buttonAdd" on:click={getNewTask}> Add a task! </button>
 
@@ -245,7 +245,7 @@
             Delete column
         </button>
     </div>
-    <hr class="hr">
+    <hr class="hr" />
     <div
         bind:this={divContainer}
         id="taskContainer"
@@ -253,8 +253,8 @@
         class="taskContainer"
     >
         {#each columnInfo.tasks as task}
-            {#if task.length !=  0}
-             <Task taskContent={task} states={states} />
+            {#if task.length != 0}
+                <Task taskContent={task} {states} />
             {/if}
         {/each}
     </div>
@@ -278,14 +278,14 @@
         place-items: center;
         margin-bottom: 1em;
     }
-    hr{
+    hr {
         width: 900px;
         opacity: 0.5;
         background-color: #ff682c;
         border: 1px solid #ff682c;
         margin-bottom: 1em;
     }
-    .columnTitle{
+    .columnTitle {
         border: 0.4px #ff682c solid;
         font-size: 20px;
         margin-bottom: 1em;
@@ -350,6 +350,45 @@
         width: 900px;
         align-items: center;
         justify-content: center;
-        gap: 0.2em
+        gap: 0.2em;
+    }
+
+    @media screen and (max-width: 500px) {
+        .taskContainer {
+            display: flex;
+            flex-direction: column;
+            padding: 0.3em;
+            width: 400px;
+            align-items: center;
+            justify-content: center;
+            gap: 0.2em;
+        }
+        hr {
+            width: 400px;
+            opacity: 0.5;
+            background-color: #ff682c;
+            border: 1px solid #ff682c;
+            margin-bottom: 1em;
+        }
+
+        .columnTitle {
+            width: 200px;
+            overflow: hidden;
+        }
+        .buttonContainer {
+            width: 400px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            place-items: center;
+            margin-bottom: 1em;
+        }
+        .main {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2em;
+            border-radius: 5px;
+            padding: 0.3em;
+            width: 400px;
+        }
     }
 </style>

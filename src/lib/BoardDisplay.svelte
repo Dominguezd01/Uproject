@@ -100,13 +100,12 @@
 </script>
 
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div on:click|stopPropagation={handleClick} bind:this={divClickable} class="board" data-id ={board.id}>
         <div id="boardName">
             <span class="dynamicText"><b>{board.name}</b></span>
         </div>
-        <!--<div id="separator"></div>-->
+
         <div id="boardOwner">
             <div id="ownerName">
                 <span class="permanentText">Owner: </span>
@@ -117,6 +116,8 @@
                 {/if}
 
             </div>
+     
+
             <!-- svelte-ignore a11y-missing-attribute -->
             <a class="deleteBoard" on:click|preventDefault={deleteBoard}>
                 <img class="deleteIcon" src={deleteIcon} alt="">
@@ -169,5 +170,5 @@
     .permanentText{
         font-weight: bold;
     }
-
+    
 </style>

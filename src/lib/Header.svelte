@@ -14,7 +14,7 @@
         }
     };
 </script>
-<header class="navbar navbar-expand-lg navbar-light bg-light w-120">
+<header class="navbar">
     <div class="logoContainer">
         {#if getUserId() === true}
             <a href="/boards"><img class="headerLogo" width="100px" src={logo} alt="Logo of the app"></a> 
@@ -23,7 +23,7 @@
         {/if}
     </div>
     <div>
-        <h1>UPROJECT</h1>   
+        <h1 class="title">UPROJECT</h1>   
     </div>
     {#if getUserId() === true}
         <Dropdown userId={getUserId()}></Dropdown>
@@ -47,8 +47,10 @@
         justify-content: flex-start;
     }
     .headerLogo{
-        margin-left: -10em;
         width: 100px;
+    }
+    .title {
+        font-size: 3em;
     }
     .loginButton{
         background-color: white;
@@ -57,5 +59,13 @@
         border-radius: 15px;
         padding: 1em;
         text-decoration: none;
+    }
+    @media screen and (max-width: 500px){
+        .title {
+            display: none;
+        }
+        .navbar{
+            width: 100%;
+        }
     }
 </style>

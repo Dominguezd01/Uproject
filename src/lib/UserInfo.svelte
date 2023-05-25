@@ -162,7 +162,7 @@
         </div>
 
         <div>
-            <input class="submit" type="submit" />
+            <input class="submit" type="submit" value="Submit Changes!"/>
         </div>
     </form>
 </div>
@@ -211,5 +211,28 @@
         width: 150px;
         border: none;
         border-radius: 5px;
+    }
+
+    @media screen and (max-width: 500px) {
+        .mainContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2em;
+        margin-top: 100px;
+    }
+    .inputsContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        margin-top: 2em;
+    }
+    .submit{
+        margin-bottom: 1em;
+    }
+    .profilePicture {
+        width: 100px;
+    }
     }
 </style>

@@ -95,9 +95,9 @@
         background-color: #2b303a;
     }
     .inputForm:focus, .inputForm:hover {
-        -webkit-box-shadow: 10px 10px 5px 0px #ff682c;
-        -moz-box-shadow: 10px 10px 5px 0px #ff682c;
-        box-shadow: 10px 10px 5px 0px #ff682c;
+        -webkit-box-shadow: 10px 10px 5px 0px #f07f53;
+        -moz-box-shadow: 10px 10px 5px 0px #f07f53;
+        box-shadow: 10px 10px 5px 0px #f07f53;
     }
     .submit{
         width: 150px;

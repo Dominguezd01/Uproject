@@ -16,7 +16,7 @@
     let columnContainer;
     let boardId;
     let userId;
-    let boardNameValue
+    let boardNameValue;
     onMount(() => {
         if (browser) {
             localStorage.setItem(
@@ -141,7 +141,7 @@
                     setTimeout(() => {
                         location.href = "/boards";
                     }, 1500);
-                }else{
+                } else {
                     Swal.fire({
                         title: "Error",
                         text: `${responseCreateColumn.message}`,
@@ -149,9 +149,9 @@
                         showConfirmButton: false,
                         timer: 1500,
                     });
-                    setTimeout(() =>{
-                        location.reload()
-                    }, 1500)
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1500);
                 }
             },
             allowOutsideClick: () => !Swal.isLoading(),
@@ -296,59 +296,66 @@
         }
     };
 
-    const handleEditBoardName = async () =>{
+    const handleEditBoardName = async () => {
         let options = {
             method: "PUT",
             headers: {
-                "Content-Type" : "application/json"
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 userId: getUserId(),
                 boardId: getBoardId(),
-                name: boardNameValue.value
-            })
-        }
-        let updateBoardName = await fetch(`${API_ROUTE}/boards/update`, options)
+                name: boardNameValue.value,
+            }),
+        };
+        let updateBoardName = await fetch(
+            `${API_ROUTE}/boards/update`,
+            options
+        );
 
-        updateBoardName = await updateBoardName.json()
+        updateBoardName = await updateBoardName.json();
 
-        if(updateBoardName.status == 401){
+        if (updateBoardName.status == 401) {
             Swal.fire({
                 title: "Error",
                 text: `${updateBoardName.message}`,
                 icon: "error",
                 timer: 2000,
-                showConfirmButton: false
-            })
+                showConfirmButton: false,
+            });
 
-            setTimeout(() =>{
-                location.href = "/boards"
-            }, 2000)
-
-        }else if(updateBoardName.status == 400){
+            setTimeout(() => {
+                location.href = "/boards";
+            }, 2000);
+        } else if (updateBoardName.status == 400) {
             Swal.fire({
                 title: "Error",
                 text: `${updateBoardName.message}`,
                 icon: "error",
-            })
-        }else if(updateBoardName.status == 500){
+            });
+        } else if (updateBoardName.status == 500) {
             Swal.fire({
                 title: "Error",
                 text: `${updateBoardName.message}`,
                 icon: "error",
-            })
+            });
         }
-    }
+    };
 </script>
 
 <div id="main">
     {#await response}
         <Loader />
     {:then boardInfo}
-        <input class="boardName" value={boardInfo["board"][0].name} on:blur={handleEditBoardName} bind:this={boardNameValue}>
+        <input
+            class="boardName"
+            value={boardInfo["board"][0].name}
+            on:blur={handleEditBoardName}
+            bind:this={boardNameValue}
+        />
         <div id="flexRight">
             <button class="createColumnButton" on:click={createColumn}>
-                <span>Create a new column!</span>
+                <span class="text">Create a new column!</span>
                 <img
                     src={createColumnIcon}
                     class="icon"
@@ -357,11 +364,11 @@
                 />
             </button>
             <button class="addUserButton" on:click={addUser}>
-                <span>Add a user!</span>
+                <span class="text">Add a user!</span>
                 <img src={addUserIcon} class="icon" alt="Add user Icon" />
             </button>
             <button class="deleteUserButton" on:click={deleteUser}>
-                <span>Delete a user</span>
+                <span class="text">Delete a user</span>
                 <img src={deleteUserIcon} class="icon" alt="Delete user icon" />
             </button>
         </div>
@@ -434,15 +441,14 @@
     }
 
     .createColumnButton:hover,
-    .addUserButton:hover {
-        -webkit-box-shadow: 10px 10px 5px 0px #ff682c;
-        -moz-box-shadow: 10px 10px 5px 0px #ff682c;
-        box-shadow: 10px 10px 5px 0px #ff682c;
+    .addUserButton:hover,
+    .deleteUserButton:hover {
+        border: 1px solid rgb(247, 237, 236);
     }
     .icon {
         width: 20px;
     }
-    .boardName{
+    .boardName {
         font-size: 35px;
         margin-top: 1em;
         margin-bottom: 1em;
@@ -454,9 +460,43 @@
         text-align: center;
         border-radius: 15px;
     }
-    
-    .boardName:hover, .boardName:focus{
+
+    .boardName:hover,
+    .boardName:focus {
         border: 0.4px #ff682c solid;
         background-color: rgb(253, 140, 75);
+    }
+
+    @media screen and (max-width: 500px) {
+        #main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        #flexRight {
+            display: flex;
+            width: 400px;
+            margin-bottom: 1.5em;
+            justify-content: space-around;
+        }
+        .text{
+            display: none;
+        }
+        .boardName {
+            font-size: 35px;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            width: 300px;
+            background-color: #2b303a;
+            transition: 0.4s;
+            border: none;
+            height: 55px;
+            text-align: center;
+            border-radius: 15px;
+            overflow: hidden;
+        }
     }
 </style>

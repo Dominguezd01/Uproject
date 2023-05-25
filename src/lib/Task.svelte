@@ -141,7 +141,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 2em;
+        gap: 0.3em;
         border: 2px solid rgb(235, 138, 100, 0.863);
         border-radius: 15px;
         width: min-content;
@@ -181,5 +181,18 @@
     #buttonContainer{
         display: flex;
         gap: 1em;
+    }
+
+    @media screen and (max-width: 500px){
+        .taskContent{
+            width: 200px;
+            border-radius: 10px;
+            border: solid 1px rgb(204, 204, 204);
+            background-color: #2b303a;
+            transition: 0.4s;
+            font-size: 20px;
+            overflow: hidden;
+        }
+        
     }
 </style>
