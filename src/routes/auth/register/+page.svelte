@@ -29,10 +29,11 @@
         response =  await response.json()
         
         if(response.status == 200){
-            Swal.fire(
-                `${response.message}`,
-                "success"
-            )
+            Swal.fire({
+                title: "Success!" ,
+                text:`${response.message}`,
+                icon:"success"
+            })
             if(browser){
                 sessionStorage.setItem("userId", response.sendData.id )
                 sessionStorage.setItem("userName", response.sendData.name )
