@@ -7,7 +7,6 @@
   import UserInfo from "../../../lib/UserInfo.svelte"
   const getUserId = () => {
     if (browser) {
-      location.href = "/"
       let userId = sessionStorage.getItem("userId")
       if (!userId) {
         location.href = "/auth/login"

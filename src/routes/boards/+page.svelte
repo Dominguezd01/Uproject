@@ -7,13 +7,11 @@
   import { API_ROUTE } from "../../lib/routes"
   import Loader from "../../lib/Loader.svelte"
   import UpLogo from "../../lib/UpLogo.svelte"
+  import { browser } from "$app/environment"
   let searchParams
   let inputValue
   let idUser
-  import { browser } from "$app/environment"
-  if (browser) {
-    location.href = "/"
-  }
+
   const getUserId = () => {
     if (browser) {
       let userId = sessionStorage.getItem("userId")

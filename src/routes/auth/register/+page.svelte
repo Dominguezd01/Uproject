@@ -8,7 +8,6 @@
   let userNameForm
   onMount(() => {
     if (browser) {
-      location.href = "/"
       if (sessionStorage.getItem("userId")) {
         location.href = "/boards"
       }

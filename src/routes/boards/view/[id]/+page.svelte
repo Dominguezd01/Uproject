@@ -11,9 +11,7 @@
   import Swal from "sweetalert2"
   import { API_ROUTE } from "../../../../lib/routes.js"
   import { browser } from "$app/environment"
-  if (browser) {
-    location.href = "/"
-  }
+
   let states
   let columnContainer
   let boardId

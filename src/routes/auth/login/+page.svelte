@@ -10,7 +10,6 @@
       if (sessionStorage.getItem("userId")) {
         location.href = "/boards"
       }
-      location.href = "/"
     }
   })
 
